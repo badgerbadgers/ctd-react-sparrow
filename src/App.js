@@ -63,7 +63,7 @@ import TodoList from './TodoList';
 function App() {
   return (
     <>
-      <h2>Todo List </h2>
+      <h2> Todo List </h2>
       <AddTodoForm />
       <TodoList />
     </>

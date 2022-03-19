@@ -15,7 +15,6 @@ function AddTodoForm(props) {
        As I understand it I am invoking the callback function passed down
        as a prop and passing in the todoTitle which as the current value
        from the input field, this will then become the newTodo value. --
-
       [] Inside the handleAddTodo function, invoke the onAddTodo callback
        prop and pass newTodo as an argument 
     */}

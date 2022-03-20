@@ -1,45 +1,46 @@
 import React, { useState } from 'react';
 
 /* a functional component that takes in props */
-function AddTodoForm(props) {
+function AddTodoForm({ onAddTodo }) {
+  /* the initial state of todoTitle and the function that sets its' value */
   const [todoTitle, setTodoTitle] = useState('');
   
-  function handleTitleChange(event) {
-    let newTodoTitle = event.target.value
-    setTodoTitle(newTodoTitle)
-    console.log('onchange:',todoTitle)
-  }
-
   /* 
-   a handle todo function that takes an event as a parameter, runs event
-   preventDefault, console.logs(todoTitle) and sets the value todoTitle 
-   to an empty string
+  a handler function that takes in an onChange event gets event target value
+  as a variable and then calls setTodoTitle function with event target value 
+  variable as an argument
   */
-  function handleTodo (event) {
-    console.log('submitted',todoTitle)
-      props.onAddTodo(todoTitle)
-      event.preventDefault();
-    //   setTodoTitle('');
+  function handleTitleChange(event) {
+    let newTodoTitle = event.target.value;
+    setTodoTitle(newTodoTitle)
   }
 
-  /* 
-    returns a form that contains a label element, a text input with 3 attributes
-    value that takes the value of the todoTitle variable, name and onChange
-    onChange runs an anonymous function that takes in an event and invokes the
-    setTodoTitle and set a new value for todoTitle 
-    */
+  /* a handler function that takes in an event onSubmit and fires when form is
+    submitted it then calls onAddTodo and passes a object as an argument that
+    includes a title attribute which is the value of todoTitle and and id
+    which is a function that gives the current date, the form will then 
+    clear the input text field by setting the input field value to an empty string
+  */
+  function handleAddTodo (event) {
+    event.preventDefault();
+    onAddTodo({
+        title: todoTitle,
+        id: Date.now()
+        })
+    setTodoTitle('');
+  }
+
+  /* returns a form with a label element, input field and button */
   return (
     <div>
-      {/* onSubmit form will run handleTitleChange */}
-      <form onSubmit={handleTodo}>
+      <form onSubmit={handleAddTodo}>
           <label htmlFor="todoTitle">Title</label>
           <input
           id="todoTitle" 
           type="text" 
           value={todoTitle} 
           name="title" 
-          onChange={handleTitleChange
-          }>
+          onChange={handleTitleChange}>
           </input>
           <button>Add</button>
       </form>

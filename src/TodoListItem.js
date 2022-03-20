@@ -1,15 +1,15 @@
 import React from 'react';
 
 /*
- a functional component that takes in props and returns a list item
- with a key and title from data that was passed down as a prop
+ a functional component that takes in props and returns a div 
+ with the todo item's key and p text containing the title of the todo item
 */
-function TodoListItem(props) {
-  {/* returns a div with a key and a list element with the todoList object title  */}
-  return (
-    <div key={props.id}>
+function TodoListItem({ todo }) {
+
+    return (
+    <div key={todo.id}>
       <li>
-        <p>{props.todo.title}</p>
+        <p>{todo.title}</p>
       </li>
     </div>
   )

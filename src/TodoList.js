@@ -1,23 +1,20 @@
 import React from 'react';
-// import TodoListItem from './TodoListItem';
+import TodoListItem from './TodoListItem';
 
 /* 
-  a functional component that maps through an array of data
-  and renders specific values to back to the DOM
+  a functional component that takes in props and maps through that data
+  it will then return a div with key and a TodoListItem component that
+  passes down props
 */
-function TodoList(props) {
-
+function TodoList({ todoList }) {
   return(
     <>
       <ul>
-      {/* maps over the array, the key attribute uses the object id
-        react does not let you use key prop that is passed down
-        you must use another prop attribute
-      */}
-      {props.todoList.map((item) => {
+      {todoList.map((item) => {
         return(
-            <div key={item.id}></div>
-            // <TodoListItem id={props.item.id} key={props.item.id} todo={item} />
+          <div key={item.id}>
+            <TodoListItem id={item.id} key={item.id} todo={item} />
+          </div>
         )
       })}
     </ul>

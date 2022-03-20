@@ -9,7 +9,7 @@ function App() {
   const [todoList, setTodoList] = useState([]);
 
   function addTodo(newTodo) {
-    let newTodos = [newTodo, ...todoList]
+    let newTodos = [newTodo, ...todoList];
     setTodoList(newTodos);
   }
 

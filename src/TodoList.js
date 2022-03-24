@@ -7,19 +7,19 @@ import TodoListItem from './TodoListItem'
  passes down props
 */
 function TodoList({ todoList, onRemoveTodo }) {
- return(
-   <>
-     <ul>
-     {todoList.map((item) => {
-       return(
-         <div key={item.id}>
+  return(
+    <>
+      <ul>
+        {todoList.map((item) => {
+        return(
+          <div key={item.id}>
            <TodoListItem id={item.id} key={item.id} todo={item} onRemoveTodo={onRemoveTodo} />
-         </div>
-       )
-     })}
-   </ul>
-   </>
- )
+          </div>
+        )
+        })}
+      </ul>
+    </>
+  )
 }
  
 export default TodoList

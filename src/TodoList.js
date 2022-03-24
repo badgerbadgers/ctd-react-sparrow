@@ -7,6 +7,7 @@ import TodoListItem from './TodoListItem'
  passes down props
 */
 function TodoList({ todoList }) {
+    console.log('props',todoList)
  return(
    <>
      <ul>

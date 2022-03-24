@@ -1,59 +1,76 @@
-//Lesson-1-5
+//Instructions for lesson 1.6
+//Create Reusable Input with Label Component
+[] Inside /src directory, create a new file called InputWithLabel.js
+[] Open /src/InputWithLabel.js
+[] Declare and export a new functional React component named InputWithLabel
+[] Move label and input JSX from AddTodoForm.js to InputWithLabel.js (see below)
+  [] Open /src/AddTodoForm.js
+  [] Cut (copy and remove) the label and input elements
+  [] Open /src/InputWithLabel.js
+  [] Inside the multi-line return, paste the elements you copied (hint: use a Fragment)
+  [] Add props as a parameter in the InputWithLabel function
+  [] Update todoTitle and handleTitleChange references to come from props
+[] Refactor AddTodoForm.js to use new InputWithLabel component and pass the necessary props
+[] Run your application and view in browser
+  [] Verify that your "Add Todo Form" still appears correctly
 
-//Save Todo List in Storage
-So far you've built a todo list that allows you to add as many new items as you want, but what happens when you refresh the page? The list disappears!
+Great, now we have a reusable component! But what if we wanted to reuse this "Input with Label" in a different form? The "Label" is hard-coded as "Title" which isn't very reusable. Let's fix that:
 
-In this lesson, you will learn how to save your list in local browser storage so it persists between page loads.
-[x] Open /src/App.js
-[x] Define a useEffect React hook with todoList as a dependency
-[x] Inside the side-effect handler function, save the todoList inside localStorage with the key "savedTodoList"
-  [x] Hint: localStorage.setItem method
-[x] Run your application and view in browser
-  [x] Enter a new todo in "Add Todo" form and submit
-[x] Open your Local Storage panel in the DevTools
-  In Chrome: DevTools > Application > Local Storage > localhost
-[x] Verify that your "savedTodoList" item exists
-[x] Notice that the value, however, is not readable (see below)
-  local storage object
+[] Open /src/InputWithLabel.js
+[] Replace the text inside the label element with a new props variable named label
+[] Open /src/AddTodoForm.js
+[] Pass a label prop to the InputWithLabel component with value "Title"
+[]View your application in browser
+  [] Verify that your "Add Todo Form" still appears correctly
 
-[x] Open /src/App.js
-[x] Update your side-effect function to convert todoList to a string before saving in localStorage
-  [x] Hint: JSON.stringify method
-[x] View your application in browser
-[x] Clear your Local Storage
-[x]In Chrome: DevTools > Application > Storage > Click "Clear site data"
-[x] Repeat the same steps from above
-[x] Notice that the value is completely readable as a string (see below)
+To-Do Application with Reusable Component(png)
 
-Now your list is saved in Local Storage, but when you refresh the page? It still disappears!
+//Refactor Input with Label to use Component Composition
+[] Open /src/InputWithLabel.js
+[] Replace label prop with children so that any child node(s) are used as the label text
+[] Open /src/AddTodoForm.js
+[] Refactor the InputWithLabel component
+  [] Remove the label prop
+  [] Change the component to have an open/close tag instead of being self-closing
+  [] Pass the text Title inside the component tags
+[] View your application in browser
+  [] Verify that your "Add Todo Form" still appears correctly
 
-This is because we wrote the list data to Local Storage but we aren't reading it when the application is rendered. Let's fix that:
+//Add Auto-Focus to Input
+[] Open /src/InputWithLabel.js
+[] Add autoFocus prop to input element
+[] View your application in browser
+  [] Verify that input element is focused on page load
 
-[x] Open /src/App.js
-[x] Update the default state for todoList to read your "savedTodoList" item from localStorage
-  [x]Hint: localStorage.getItem method
-[x] View your application in browser
-[x] Notice that there is an error, todoList is not an Array
+//To-Do Application with Focused Input
 
-//How could our list not be an Array? Right! We turned it into a string before saving in Local Storage. So now that we're ready to use the value, we need to turn it back into an Array.
+Now the input is focused automatically, but what happens when you submit the "Add Todo" form? Focus is lost! Let's update our code so the input element is focused on every render:
 
-[x] Open /src/App.js
-[x] Update your default state to parse the value of the "savedTodoList" item
-  []Hint: JSON.parse method
-[x] View your application in browser
-  [x] Notice that your previous todo item(s) are still visible after refreshing the page
+[] Open /src/InputWithLabel.js
+[] Use the useRef React hook to create an imperative ref named inputRef
+[] Define a useEffect React hook with an empty dependency list
+[] Inside the side-effect handler function, call the focus() method on the current inputRef
+[] Remove the autoFocus prop on the input element
+[] Add a ref prop with value inputRef on the input element
+[]]View your application in browser
+  [] Verify that input element is focused on page load
+  [] Enter a new todo in "Add Todo" form and submit
+  [] Verify that input element is re-focused automatically
 
-//Create Custom Hook
-[x] Open /src/App.js
-[x] Above the App functional component, create a new function named useSemiPersistentState which will be a custom hook
-[x] Cut (copy/remove) the useState and useEffect hooks from App into useSemiPersistentState
-[x] Add a return statement in useSemiPersistentState that returns the todoList state variable and setter in an Array (just like how it's returned from the useState hook)
-[x] Update App to use the new custom hook
-  [x] Hint: Copy the useState hook from before, but change useState to the custom hook useSemiPersistentState (no arguments)
-[x] View your application in browser
-  [x] Verify that your Todo List still appears correctly
-
-Fragments
-[x] Open /src/App.js and update the JSX to use a Fragment
-
-Final Result
+//Add "Remove" Button to List Items
+[] Open /src/TodoListItem.js
+[] Add a button element, type "button", inside the list item with text "Remove"
+[] Open /src/App.js
+[] Define a new handler function named removeTodo with parameter id
+  [] Inside this function, remove the item with the given id from todoList
+    []hint: filter or splice methods
+  [] Call the setTodoList state setter and pass the new or modified Array
+[] Pass removeTodo as a callback handler prop named onRemoveTodo to the TodoList component
+[] Open /src/TodoList.js
+[] Pass onRemoveTodo prop as a callback handler prop named onRemoveTodo to the TodoListItem component
+[] Open /src/TodoListItem.js
+[] Add an onClick prop to the button element and pass a function that calls onRemoveTodo from props with the current item id as an argument
+[] View your application in browser
+  [] Click the "Remove" button next to any list item
+  [] Verify that the corresponding item is removed from the list
+  [] Refresh the page and verify that the item is still removed

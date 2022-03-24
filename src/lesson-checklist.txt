@@ -26,36 +26,36 @@ Great, now we have a reusable component! But what if we wanted to reuse this "In
 To-Do Application with Reusable Component(png)
 
 //Refactor Input with Label to use Component Composition
-[] Open /src/InputWithLabel.js
-[] Replace label prop with children so that any child node(s) are used as the label text
-[] Open /src/AddTodoForm.js
-[] Refactor the InputWithLabel component
-  [] Remove the label prop
-  [] Change the component to have an open/close tag instead of being self-closing
-  [] Pass the text Title inside the component tags
-[] View your application in browser
-  [] Verify that your "Add Todo Form" still appears correctly
+[x] Open /src/InputWithLabel.js
+[x] Replace label prop with children so that any child node(s) are used as the label text
+[x] Open /src/AddTodoForm.js
+x[] Refactor the InputWithLabel component
+  [x] Remove the label prop
+  [x] Change the component to have an open/close tag instead of being self-closing
+  [x] Pass the text Title inside the component tags
+[x] View your application in browser
+  [x] Verify that your "Add Todo Form" still appears correctly
 
 //Add Auto-Focus to Input
-[] Open /src/InputWithLabel.js
-[] Add autoFocus prop to input element
-[] View your application in browser
-  [] Verify that input element is focused on page load
+[x] Open /src/InputWithLabel.js
+[x] Add autoFocus prop to input element
+[x] View your application in browser
+  [x] Verify that input element is focused on page load
 
 //To-Do Application with Focused Input
 
 Now the input is focused automatically, but what happens when you submit the "Add Todo" form? Focus is lost! Let's update our code so the input element is focused on every render:
 
-[] Open /src/InputWithLabel.js
-[] Use the useRef React hook to create an imperative ref named inputRef
-[] Define a useEffect React hook with an empty dependency list
-[] Inside the side-effect handler function, call the focus() method on the current inputRef
-[] Remove the autoFocus prop on the input element
-[] Add a ref prop with value inputRef on the input element
-[]]View your application in browser
-  [] Verify that input element is focused on page load
-  [] Enter a new todo in "Add Todo" form and submit
-  [] Verify that input element is re-focused automatically
+[x] Open /src/InputWithLabel.js
+[x] Use the useRef React hook to create an imperative ref named inputRef
+[x] Define a useEffect React hook with an empty dependency list
+[x] Inside the side-effect handler function, call the focus() method on the current inputRef
+[x] Remove the autoFocus prop on the input element
+[x] Add a ref prop with value inputRef on the input element
+[x] View your application in browser
+  [x] Verify that input element is focused on page load
+  [x] Enter a new todo in "Add Todo" form and submit
+  [x] Verify that input element is re-focused automatically
 
 //Add "Remove" Button to List Items
 [] Open /src/TodoListItem.js

@@ -1,27 +1,27 @@
 //Instructions for lesson 1.6
 //Create Reusable Input with Label Component
-[] Inside /src directory, create a new file called InputWithLabel.js
-[] Open /src/InputWithLabel.js
-[] Declare and export a new functional React component named InputWithLabel
-[] Move label and input JSX from AddTodoForm.js to InputWithLabel.js (see below)
-  [] Open /src/AddTodoForm.js
-  [] Cut (copy and remove) the label and input elements
-  [] Open /src/InputWithLabel.js
-  [] Inside the multi-line return, paste the elements you copied (hint: use a Fragment)
-  [] Add props as a parameter in the InputWithLabel function
-  [] Update todoTitle and handleTitleChange references to come from props
-[] Refactor AddTodoForm.js to use new InputWithLabel component and pass the necessary props
-[] Run your application and view in browser
-  [] Verify that your "Add Todo Form" still appears correctly
+[x] Inside /src directory, create a new file called InputWithLabel.js
+[x] Open /src/InputWithLabel.js
+[x] Declare and export a new functional React component named InputWithLabel
+[x] Move label and input JSX from AddTodoForm.js to InputWithLabel.js (see below)
+  [x] Open /src/AddTodoForm.js
+  [x] Cut (copy and remove) the label and input elements
+  [x] Open /src/InputWithLabel.js
+  [x] Inside the multi-line return, paste the elements you copied (hint: use a Fragment)
+  [x] Add props as a parameter in the InputWithLabel function
+  [x] Update todoTitle and handleTitleChange references to come from props
+[x] Refactor AddTodoForm.js to use new InputWithLabel component and pass the necessary props
+[x] Run your application and view in browser
+  [x] Verify that your "Add Todo Form" still appears correctly
 
 Great, now we have a reusable component! But what if we wanted to reuse this "Input with Label" in a different form? The "Label" is hard-coded as "Title" which isn't very reusable. Let's fix that:
 
-[] Open /src/InputWithLabel.js
-[] Replace the text inside the label element with a new props variable named label
-[] Open /src/AddTodoForm.js
-[] Pass a label prop to the InputWithLabel component with value "Title"
-[]View your application in browser
-  [] Verify that your "Add Todo Form" still appears correctly
+[x] Open /src/InputWithLabel.js
+[x] Replace the text inside the label element with a new props variable named label
+[x] Open /src/AddTodoForm.js
+[x] Pass a label prop to the InputWithLabel component with value "Title"
+[x]View your application in browser
+  [x] Verify that your "Add Todo Form" still appears correctly
 
 To-Do Application with Reusable Component(png)
 

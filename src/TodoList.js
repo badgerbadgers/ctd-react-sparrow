@@ -6,20 +6,20 @@ import TodoListItem from './TodoListItem'
  it will then return a div with key and a TodoListItem component that
  passes down props
 */
-function TodoList({ todoList }) {
- return(
-   <>
-     <ul>
-     {todoList.map((item) => {
-       return(
-         <div key={item.id}>
-           <TodoListItem id={item.id} key={item.id} todo={item} />
-         </div>
-       )
-     })}
-   </ul>
-   </>
- )
+function TodoList({ todoList, onRemoveTodo }) {
+  return(
+    <>
+      <ul>
+        {todoList.map((item) => {
+        return(
+          <div key={item.id}>
+           <TodoListItem id={item.id} key={item.id} todo={item} onRemoveTodo={onRemoveTodo} />
+          </div>
+        )
+        })}
+      </ul>
+    </>
+  )
 }
  
 export default TodoList

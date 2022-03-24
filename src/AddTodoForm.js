@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import InputWithLabel from './InputWithLabel';
  
 /* a functional component that takes in props */
 function AddTodoForm({ onAddTodo }) {
@@ -33,7 +34,7 @@ function AddTodoForm({ onAddTodo }) {
  return (
    <div>
      <form onSubmit={handleAddTodo}>
-         <label htmlFor="todoTitle">Title</label>
+         {/* <label htmlFor="todoTitle">Title</label>
          <input
          id="todoTitle"
          type="text"
@@ -41,7 +42,8 @@ function AddTodoForm({ onAddTodo }) {
          name="title"
          onChange={handleTitleChange}>
          </input>
-         <button>Add</button>
+         <button>Add</button> */}
+      <InputWithLabel handleTitleChange={handleTitleChange} todoTitle={todoTitle}/>
      </form>
    </div>
  )

@@ -58,19 +58,19 @@ Now the input is focused automatically, but what happens when you submit the "Ad
   [x] Verify that input element is re-focused automatically
 
 //Add "Remove" Button to List Items
-[] Open /src/TodoListItem.js
-[] Add a button element, type "button", inside the list item with text "Remove"
-[] Open /src/App.js
-[] Define a new handler function named removeTodo with parameter id
-  [] Inside this function, remove the item with the given id from todoList
-    []hint: filter or splice methods
-  [] Call the setTodoList state setter and pass the new or modified Array
-[] Pass removeTodo as a callback handler prop named onRemoveTodo to the TodoList component
-[] Open /src/TodoList.js
-[] Pass onRemoveTodo prop as a callback handler prop named onRemoveTodo to the TodoListItem component
-[] Open /src/TodoListItem.js
-[] Add an onClick prop to the button element and pass a function that calls onRemoveTodo from props with the current item id as an argument
-[] View your application in browser
-  [] Click the "Remove" button next to any list item
-  [] Verify that the corresponding item is removed from the list
-  [] Refresh the page and verify that the item is still removed
+[x] Open /src/TodoListItem.js
+[x] Add a button element, type "button", inside the list item with text "Remove"
+[x] Open /src/App.js
+[x] Define a new handler function named removeTodo with parameter id
+  [x] Inside this function, remove the item with the given id from todoList
+    [x] hint: filter or splice methods
+  [x] Call the setTodoList state setter and pass the new or modified Array
+[x] Pass removeTodo as a callback handler prop named onRemoveTodo to the TodoList component
+[x] Open /src/TodoList.js
+[x] Pass onRemoveTodo prop as a callback handler prop named onRemoveTodo to the TodoListItem component
+[x] Open /src/TodoListItem.js
+[x] Add an onClick prop to the button element and pass a function that calls onRemoveTodo from props with the current item id as an argument
+[x] View your application in browser
+  [x] Click the "Remove" button next to any list item
+  [x] Verify that the corresponding item is removed from the list
+  [x] Refresh the page and verify that the item is still removed

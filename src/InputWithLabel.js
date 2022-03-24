@@ -1,5 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 
+/*
+a functional reusable component that takes in props, creates some imperative logic with
+the focus attribute in the input field  with useRef and useEffect and returns
+an input field with attributes and a button labeled add
+*/
 function InputWithLabel({ handleTitleChange, todoTitle, children, isFocused }) {
    const inputRef = useRef();
 
@@ -8,6 +13,7 @@ function InputWithLabel({ handleTitleChange, todoTitle, children, isFocused }) {
        inputRef.current.focus();
      }
    }, [isFocused]);
+
   return (
     <>
       <label htmlFor="todoTitle">{children}</label>

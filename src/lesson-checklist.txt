@@ -1,11 +1,11 @@
 //Instructions for lesson 1-7
 //Remove Custom Hook
-[] Open src/App.js
-[] Delete the useSemiPersistentState function call from App
-[] Copy the useState and useEffect hooks from useSemiPersistentState function back into App
-[] Delete the useSemiPersistentState function
-[] Run your application and view in browser
-  [] Verify that your Todo List still appears correctly
+[x] Open src/App.js
+[x] Delete the useSemiPersistentState function call from App
+[x] Copy the useState and useEffect hooks from useSemiPersistentState function back into App
+[x] Delete the useSemiPersistentState function
+[x] Run your application and view in browser
+  [x] Verify that your Todo List still appears correctly
 
 //Async
   Currently our list data is retrieved synchronously from the browser's storage, but in the next lesson we will be fetching it asynchronously from an API. Let's update our code to mimic asynchronous data fetching:

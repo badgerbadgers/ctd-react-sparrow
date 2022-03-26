@@ -7,7 +7,8 @@ import TodoList from './TodoList'
   and 2 components AddTodoForm and TodoList with props passed down to them
 */
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     new Promise((resolve, reject) => {
@@ -20,6 +21,7 @@ function App() {
     })
     .then((result) => {
       setTodoList(todoList)
+      setIsLoading(false)
     })
   },[])
 
@@ -48,7 +50,9 @@ function App() {
   };
 
   useEffect(() => {
-    localStorage.setItem('savedTodoList', JSON.stringify(todoList))
+    if(!isLoading) {
+      return localStorage.setItem('savedTodoList', JSON.stringify(todoList))
+    }
   },[todoList])
 
   return (

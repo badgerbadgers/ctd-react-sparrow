@@ -7,11 +7,18 @@ import TodoList from './TodoList'
   and 2 components AddTodoForm and TodoList with props passed down to them
 */
 function App() {
- const [todoList, setTodoList] = useState( () => {
-   const localData = localStorage.getItem('savedTodoList')
-   return localData ? JSON.parse(localData) : []
-   }
- );
+  const [todoList, setTodoList] = useState([]);
+
+  useEffect(() => {
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+       resolve({ data: { todoList: () => {
+        const localData = localStorage.getItem('savedTodoList')
+        return localData ? JSON.parse(localData) : []
+        }}}) 
+      }, 2000)
+    })
+  },[])
 
   /*
   addTodo function that takes in a variable newTodo 
@@ -34,22 +41,20 @@ function App() {
     const newTodoList = todoList.filter(
       (todo) => id !== todo.id
     )
-
     setTodoList(newTodoList)
   };
 
- useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('savedTodoList', JSON.stringify(todoList))
- }, [todoList])
+  },[todoList])
 
-
- return (
+  return (
    <>
      <h2> Todo List </h2>
      <AddTodoForm onAddTodo={addTodo} />
      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
    </>
- );
+  );
 }
  
 export default App

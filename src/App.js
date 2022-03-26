@@ -18,6 +18,9 @@ function App() {
         }}}) 
       }, 2000)
     })
+    .then((result) => {
+      setTodoList(todoList)
+    })
   },[])
 
   /*

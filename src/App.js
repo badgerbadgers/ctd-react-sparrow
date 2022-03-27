@@ -2,28 +2,34 @@ import React, { useState, useEffect } from 'react'
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 
-/* functional component that sets state using a custom react hook,
-  the App component then returns a header 
-  and 2 components AddTodoForm and TodoList with props passed down to them
+/*
+  functional component sets state with two variables contains two useEffect hooks, functions and returns JSX
 */
 function App() {
   const [todoList, setTodoList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
+  /*
+  initial useEffect hook creates a new Promise that takes in two parameters, calls setTimeout then inside setTimeout
+  calls resolve argument to return a data object with property of todoList that has an annonymous function
+  run and return parsed data in localStorage or return an empty array. after that a then will call the setTodoList
+  equal to the result object's todoList property and setLoading to false, there is an empty array as second argument
+  */
   useEffect(() => {
     new Promise((resolve, reject) => {
       setTimeout(() => {
-       resolve({ data: { todoList: () => {
-        const localData = localStorage.getItem('savedTodoList')
-        return localData ? JSON.parse(localData) : []
-        }}}) 
+        resolve({ data: { todoList: () =>  JSON.parse(localStorage.getItem('savedTodoList')) || []
+          // const localData = localStorage.getItem('savedTodoList')
+          // return localData ? JSON.parse(localData) : []
+          }}
+        ) 
       }, 2000)
     })
     .then((result) => {
-      setTodoList(todoList)
+      setTodoList(result.data.todoList)
       setIsLoading(false)
     })
-  },[])
+  }, [])
 
   /*
   addTodo function that takes in a variable newTodo 
@@ -48,7 +54,11 @@ function App() {
     )
     setTodoList(newTodoList)
   };
-
+  
+  /*
+  a 2nd useEffect hook, this will run if isLoading state is false, it will add todos to your local storage
+  saving them with a key and the value as a string, this useEffect will run anytime the todoList variable changes
+  */
   useEffect(() => {
     if(!isLoading) {
       return localStorage.setItem('savedTodoList', JSON.stringify(todoList))
@@ -56,11 +66,15 @@ function App() {
   },[todoList])
 
   return (
-   <>
-     <h2> Todo List </h2>
-     <AddTodoForm onAddTodo={addTodo} />
-     <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-   </>
+    <>
+      <h2> Todo List </h2>
+      <AddTodoForm onAddTodo={addTodo} />
+      {isLoading ? (
+        <p>Loading ...</p> 
+        ):(
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
+    </>
   );
 }
  

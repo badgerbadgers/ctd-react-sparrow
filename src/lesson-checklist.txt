@@ -33,29 +33,29 @@ You'll notice now that the list is being saved in localStorage but after refresh
 We need a way to know that the data is still loading before trying to update it in localStorage.
 
 //Add Loading State
-[] After the todoList state declaration, create a new state variable named isLoading with update function named setIsLoading with default value true
-[] Inside the second useEffect hook (with todoList dependency), add an if statement to check that isLoading is false before setting localStorage
+[x] After the todoList state declaration, create a new state variable named isLoading with update function named setIsLoading with default value true
+[x] Inside the second useEffect hook (with todoList dependency), add an if statement to check that isLoading is false before setting localStorage
 
 Now we just need to way to turn loading off once the data has been fetched.
 
-[] Revisit the then callback in the first useEffect hook
-[] After setting the todoList state, add another line to set isLoading state to false
-[] View your application in the browser
-  [] Enter a new todo in "Add Todo" form and submit
-  [] Reload the page and wait 2 seconds
-  [] Notice that the saved item now appears in the list
+[x] Revisit the then callback in the first useEffect hook
+[x] After setting the todoList state, add another line to set isLoading state to false
+[x] View your application in the browser
+  [x] Enter a new todo in "Add Todo" form and submit
+  [x] Reload the page and wait 2 seconds
+  [x] Notice that the saved item now appears in the list
 
 Great! Now our data is being saved properly again, but that delay in loading makes it seem like the list is empty at first. Let's add a loading indicator to prevent confusion.
 
 //Create Conditional Loading Indicator
-[] Inside the App JSX, create a new paragraph element above TodoList with text "Loading..."
-[] View your application in the browser
-  [] Reload the page and notice that the loading message is visible
-  [] Wait 2 seconds and notice that the Todo List appears but the loading message is still there
+[x] Inside the App JSX, create a new paragraph element above TodoList with text "Loading..."
+[x] View your application in the browser
+  [x] Reload the page and notice that the loading message is visible
+  [x] Wait 2 seconds and notice that the Todo List appears but the loading message is still there
 
 We don't want to always show the loading indicator, it should conditionally appear based on our isLoading state.
 
-[] Using a ternary operator inside JSX, if isLoading is true render the loading message, otherwise render the TodoList component
-[] View your application in the browser
-  [] Reload the page and notice that the loading message is visible
-  [] Wait 2 seconds and notice that the loading indicator disappears when the Todo List becomes visible
+[x] Using a ternary operator inside JSX, if isLoading is true render the loading message, otherwise render the TodoList component
+[x] View your application in the browser
+  [x] Reload the page and notice that the loading message is visible
+  [x] Wait 2 seconds and notice that the loading indicator disappears when the Todo List becomes visible

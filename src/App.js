@@ -10,25 +10,24 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
 
   /*
-  initial useEffect hook creates a new Promise that takes in two parameters, calls setTimeout then inside setTimeout
-  calls resolve argument to return a data object with property of todoList that has an annonymous function
-  run and return parsed data in localStorage or return an empty array. after that a then will call the setTodoList
-  equal to the result object's todoList property and setLoading to false, there is an empty array as second argument
+  initial useEffect hook call the built in fetch method it has 2 arguments. the first argument is
+  the url with a variable for AIRTABLE_BASE_ID used with backticks (`) and template literal syntax(${}). The second is the
+  option object that provides an object with Authorization property, this property contains the API key
+  also written similar to the AIRTABLE_BASE_ID with template literal and backticks. There is a .then
+  chained after the fetch and takes the result data and turns it into a JSON object. Another .then and calls
+  the setTodoList function to set result. records as the new todoList.
+  
+  The second argument for useEffect is an empty array as second argument
   */
   useEffect(() => {
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({ data: { todoList: () =>  JSON.parse(localStorage.getItem('savedTodoList')) || []
-          // const localData = localStorage.getItem('savedTodoList')
-          // return localData ? JSON.parse(localData) : []
-          }}
-        ) 
-      }, 2000)
+  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+      }
     })
-    .then((result) => {
-      setTodoList(result.data.todoList)
-      setIsLoading(false)
-    })
+    .then(result => result.json())
+    .then(result => setTodoList(result.records))
   }, [])
 
   /*
@@ -69,11 +68,13 @@ function App() {
     <>
       <h2> Todo List </h2>
       <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? (
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+
+      {/* {isLoading ? (
         <p>Loading ...</p> 
         ):(
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
+      )} */}
     </>
   );
 }

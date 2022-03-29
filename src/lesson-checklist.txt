@@ -1,0 +1,42 @@
+//Instructions for lesson-1-8
+//Setup Airtable
+[x] Sign up (or login) for an Airtable account: https://airtable.com/signup
+[x] Create a new base
+[x]Choose a Title, Icon, and Color for your base
+[x] Rename "Table 1" to "Default"
+[x] Within the table, rename the first column to "Title" and delete the other columns
+[x] Add one or more todo items to the table
+
+//Create Environment File
+[x] Open code editor
+[x] Create a new file named .env.local in the root directory
+  dotenv files use the syntax VARIABLE=value (See official rules)
+
+//Generate Airtable API Key
+[x] Navigate to https://airtable.com/account
+[x] Click "Generate API Key"
+[x] Copy the key from the input field
+[x] Open .env.local
+[x] Create a new variable named REACT_APP_AIRTABLE_API_KEY
+[x] Paste the key as its value
+
+//Connect to Airtable API
+[x] Click "Help" button
+[x] Click "API Documentation" link
+[x] Copy the "Base ID"
+[x] Open .env.local
+[x] Create a new variable named REACT_APP_AIRTABLE_BASE_ID
+[x] Paste the ID as its value
+
+//Fetch Data from Airtable
+[x] Open src/App.js
+[x] Inside the first useEffect hook, replace the placeholder Promise with the following...
+[x] Using the Fetch API, create a "GET" request and pass the necessary arguments:
+  [x] url: the url of your request (in this case, https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default note that we need to use process.env... to get env variables and remember that you need to use back-ticks and a dollar sign to do string formatting (see Using Fetch - Web APIs | MDN (Supplying request options section) for a reminder if needed)
+  [x] options: the object of additional request options
+[x] In the fetch options object, add the property headers as an object with the following property:
+  [x] Authorization: the token to authorize the request (in this case "Bearer {API_KEY}" where {API_KEY} is replaced with the corresponding environment variable)
+[x] Chain a then method to your fetch call and pass it a function that returns the response JSON data
+[x] Update the setToDoList call to reference the new result format (hint: result.records)
+[x] Open src/TodoListItem.js
+[x] Update the todo item title to reference the new object format (hint: todo.fields.Title)

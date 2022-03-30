@@ -10,17 +10,23 @@ Read documentation: https://reactrouter.com/web/guides/quick-start
 [x] Open src/App.js
 [x] Import BrowserRouter, Routes, and Route from react-router-dom
 [x] Wrap existing JSX within new BrowserRouter component
-[] Inside BrowserRouter, wrap existing JSX within new Routes component
-[] Inside Routes, wrap existing JSX within new Route component with prop path equal to the root path ("/") and prop exact
-  []note: the path prop will match any url that starts with the given string, so "/" will match all other urls ("/one", "/one/two", and so on) unless we specify that it must be an exact match using the exact prop
-[] Run your application and view in browser
-  [] Verify that your Todo List still appears correctly
+[x] Inside BrowserRouter, wrap existing JSX within new Routes component
+[x] Inside Routes, wrap existing JSX within new Route component with prop path equal to the root path ("/") and prop exact
+  [x]note: the path prop will match any url that starts with the given string, so "/" will match all other urls ("/one", "/one/two", and so on) unless we specify that it must be an exact match using the exact prop
+[x] Run your application and view in browser
+  [x] Verify that your Todo List still appears correctly
 
 //Add New Route
-[] Open src/App.js
-[] Below the Route component, create a new Route with path "/new"
-[] Inside the Route component, create a level-one heading with text "New Todo List"
-[] Run your application and view in browser
-  [] Verify that your Todo List still appears correctly
-  [] Navigate to http://localhost:3000/new
-  [] Verify that your New Todo List heading appears
+[x] Open src/App.js
+[x] Below the Route component, create a new Route with path "/new"
+[x] Inside the Route component, create a level-one heading with text "New Todo List"
+[x] Run your application and view in browser
+  [x] Verify that your Todo List still appears correctly
+  [x] Navigate to http://localhost:3000/new
+  [x] Verify that your New Todo List heading appears
+
+//React Router Dom V6 changes
+[x]xreact router dom v6 does not need exact prop anymore
+[x]must use element prop now
+[] optional in index.js you can wrap BrowserRouter around app and strict code and just
+  use routes and route in jsx

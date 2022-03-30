@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 
@@ -65,17 +70,22 @@ function App() {
   },[todoList])
 
   return (
+    <BrowserRouter>
     <>
       <h2> Todo List </h2>
       <AddTodoForm onAddTodo={addTodo} />
-      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      <Routes>
+        <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo} />} />
+        <Route path='/new' element={"New Todo List"} />
+      </Routes>
 
-      {/* {isLoading ? (
+      {/* will render when isLoading state is changed {isLoading ? (
         <p>Loading ...</p> 
         ):(
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )} */}
     </>
+    </BrowserRouter>
   );
 }
  

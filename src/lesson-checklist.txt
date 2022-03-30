@@ -7,9 +7,9 @@
 Read documentation: https://reactrouter.com/web/guides/quick-start
 
 //Setup Router
-[] Open src/App.js
-[] Import BrowserRouter, Routes, and Route from react-router-dom
-[] Wrap existing JSX within new BrowserRouter component
+[x] Open src/App.js
+[x] Import BrowserRouter, Routes, and Route from react-router-dom
+[x] Wrap existing JSX within new BrowserRouter component
 [] Inside BrowserRouter, wrap existing JSX within new Routes component
 [] Inside Routes, wrap existing JSX within new Route component with prop path equal to the root path ("/") and prop exact
   []note: the path prop will match any url that starts with the given string, so "/" will match all other urls ("/one", "/one/two", and so on) unless we specify that it must be an exact match using the exact prop

@@ -76,7 +76,7 @@ function App() {
       <AddTodoForm onAddTodo={addTodo} />
       <Routes>
         <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo} />} />
-        <Route path='/new' element={"New Todo List"} />
+        <Route path='/new' element={<h1>"New Todo List"</h1>} />
       </Routes>
 
       {/* will render when isLoading state is changed {isLoading ? (

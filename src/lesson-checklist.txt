@@ -1,32 +1,33 @@
-//Instructions for lesson-1-9
+//Instructions lesson 3-1
+So far you've built a functional todo list, but now it's time to add some style!
 
-//Install React Router
-//If you're using NPM, run npm install react-router-dom instead
+There are multiple ways to work with CSS in React applications:
 
-- yarn add react-router-dom 
-Read documentation: https://reactrouter.com/web/guides/quick-start
+Inline CSS
+CSS
+CSS-in-JS
+In this lesson, we would like for you to use CSS modules. Let's walk through an example:
 
-//Setup Router
-[x] Open src/App.js
-[x] Import BrowserRouter, Routes, and Route from react-router-dom
-[x] Wrap existing JSX within new BrowserRouter component
-[x] Inside BrowserRouter, wrap existing JSX within new Routes component
-[x] Inside Routes, wrap existing JSX within new Route component with prop path equal to the root path ("/") and prop exact
-  [x]note: the path prop will match any url that starts with the given string, so "/" will match all other urls ("/one", "/one/two", and so on) unless we specify that it must be an exact match using the exact prop
-[x] Run your application and view in browser
-  [x] Verify that your Todo List still appears correctly
+[] Open src/
+[] Create a CSS module file called TodoListItem.module.css
+[] Add a ruleset for class ListItem that changes the text color
+[] Open src/TodoListItem.js
+[] Import the default module (as style) from TodoListItem.module.css
+[] Add a className to the <li> element and set the value as the class from CSS module ({style.ListItem})
+  [] note: the style object represents all the class names in your CSS module file, so you access them like normal object properties (dot or bracket notation)
 
-//Add New Route
-[x] Open src/App.js
-[x] Below the Route component, create a new Route with path "/new"
-[x] Inside the Route component, create a level-one heading with text "New Todo List"
-[x] Run your application and view in browser
-  [x] Verify that your Todo List still appears correctly
-  [x] Navigate to http://localhost:3000/new
-  [x] Verify that your New Todo List heading appears
+//Rubric
+For this assignment, there are some general requirements but the design is up to you. This is your chance to be creative and personalize your todo list application.
 
-//React Router Dom V6 changes
-[x]xreact router dom v6 does not need exact prop anymore
-[x]must use element prop now
-[] optional in index.js you can wrap BrowserRouter around app and strict code and just
-  use routes and route in jsx
+[] Change the background color of the page body
+[] Change the default text color
+[] Customize the font family
+  [] (Optional) Load in a font family from Google Fonts
+[] Customize style of navigation items
+[] Add spacing (padding/margin) between elements
+[] Change the font size, weight, and color of all headings
+[] Customize input and button styles
+[] Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
+[] (Optional) Add multi-media usage (i.e. iconography)
+
+This is the basic rubric, but we encourage you to think beyond this list and come up with your own ideas to make your application unique!

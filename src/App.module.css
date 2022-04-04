@@ -14,7 +14,7 @@ body {
 h1, h2, h3, h4 {
   font-family: 'Archivo Black', sans-serif;  
   color: #383940;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
 }
 p {
@@ -30,7 +30,7 @@ p {
   justify-content: center;
   align-items: center;
 }
-/* app.js wrapper */
+/* app.js wrapper a div that lives inside the container div */
 .wrapper {
   margin-top: 100px;
   padding: 20px;
@@ -45,17 +45,30 @@ p {
 .appHeader {
   padding: 15px 15px 0px 15px;
 }
-/*
-media queries for mobile, tablet, desktop 
-320px — 480px: Mobile devices.
-481px — 768px: iPads, Tablets.
-769px — 1024px: Small screens, laptops.
-1025px — 1200px: Desktops, large screens.
-1201px and more — Extra large screens, TV.
-As you shrink object window the app will change layout at smaller
-viewports ie 768px or less.
+/* media queries for font sizes the rem sizes get larger or smaller depending on viewport */
+@media only screen and (min-width: 1201px) {
+  .container {
+    width: 60%;
+  }
+  p {
+    font-size: 2rem;
+  }
+  h1,h2 {
+    font-size: 3.25rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  p {
+    font-size: 1.75rem;
+  }
+  h1,h2 {
+    font-size: 2.5rem;
+  }
+}
+/* media queries for the width of container and changes
+  content with flexbox check AddTodoForm.css and see flexbox properties
 */
-@media only screen and (max-width: 1201px) {
+@media only screen and (min-width: 1201px) {
   .container {
     width: 60%;
   }
@@ -84,5 +97,11 @@ viewports ie 768px or less.
   }
   .wrapper {
     width: auto;
+  }
+  p {
+    font-size: 1rem;
+  }
+  h1,h2 {
+    font-size: 1rem;
   }
 }

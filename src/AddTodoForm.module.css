@@ -1,10 +1,11 @@
+/* form container */
 .todoFormContainer {
   padding: 5px 15px 5px 15px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  /* border: 1px solid red; */
 }
+/* form input field */
 .todoInput {
   font-size: 16px;
   border: 1px solid #b1b1b1;
@@ -14,6 +15,7 @@
   width: 60%;
   margin-bottom: 4px;
 }
+/* form button */
 .addBtn {
   background: #6370ab;
   color: #fff;
@@ -26,7 +28,7 @@
   cursor: pointer;
   border: 0;
 }
-/* media queries */
+/* media queries flexbox will change alignment of content at smaller viewports */
 @media screen and (max-width: 998px) {
   .todoFormContainer {
     width: 100%;
@@ -34,7 +36,6 @@
     flex-direction: row;
     justify-content: flex-start;
     padding: 10px 5px 10px 5px;
-    border: 1px solid red;
   }
   .addBtn {
     margin: auto;
@@ -62,5 +63,16 @@
   }
   .todoInput {
     width: 80%;
+  }
+}
+/* media queries for font sizing such as text input field */
+@media only screen and (min-width: 1201px) {
+  .todoInput {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .todoInput {
+    font-size: 1.25rem;
   }
 }

@@ -1,0 +1,66 @@
+.todoFormContainer {
+  padding: 5px 15px 5px 15px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  /* border: 1px solid red; */
+}
+.todoInput {
+  font-size: 16px;
+  border: 1px solid #b1b1b1;
+  padding: 0 16px;
+  border-radius: 4px;
+  height: 40px;
+  width: 60%;
+  margin-bottom: 4px;
+}
+.addBtn {
+  background: #6370ab;
+  color: #fff;
+  padding: 10px 5px 10px 5px;
+  margin: 15px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 25%;
+  cursor: pointer;
+  border: 0;
+}
+/* media queries */
+@media screen and (max-width: 998px) {
+  .todoFormContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px 5px 10px 5px;
+    border: 1px solid red;
+  }
+  .addBtn {
+    margin: auto;
+    padding: 5px;
+    width: 95%;
+    text-align: center;
+  }
+  .todoInput {
+    width: 80%;
+    height: 35px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .todoFormContainer {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px 5px 10px 5px;
+  }
+  .addBtn {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  .todoInput {
+    width: 80%;
+  }
+}

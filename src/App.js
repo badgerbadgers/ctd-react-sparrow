@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import style from './App.module.css'
 import {
   BrowserRouter,
   Routes,
@@ -6,11 +7,12 @@ import {
 } from "react-router-dom";
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
+import { ReactComponent as Check } from './img/edit-list.svg'
 
 /*
   functional component sets state with two variables contains two useEffect hooks, functions and returns JSX
 */
-function App() {
+const App = () => {
   const [todoList, setTodoList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -41,7 +43,7 @@ function App() {
   todoList state variable the setTodoList then runs and sets the todoList
   to equal the newTodos variable
   */
-  function addTodo (newTodo) {
+  const addTodo = (newTodo) => {
    let newTodos = [newTodo, ...todoList]
    setTodoList(newTodos)
   };
@@ -52,7 +54,7 @@ function App() {
   id is not equal to the current todo.id if not equal return todo, then the set function
   setTodoList will return the newTodoList
   */
-  function removeTodo(id) {
+  const removeTodo = (id) => {
     const newTodoList = todoList.filter(
       (todo) => id !== todo.id
     )
@@ -71,12 +73,13 @@ function App() {
 
   return (
     <BrowserRouter>
-    <>
-      <h2> Todo List </h2>
-      <AddTodoForm onAddTodo={addTodo} />
-      <Routes>
-        <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo} />} />
-        <Route path='/new' element={<h1>"New Todo List"</h1>} />
+      <div className={style.container}>
+        <div className={style.wrapper}>
+          <h2 className={style.appHeader}> Todo List <Check height="30px" width="35px" /></h2>
+          <AddTodoForm onAddTodo={addTodo} />
+          <Routes>
+          <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo}  />} />
+          <Route path='/new' element={<h1>"New Todo List"</h1>} />
       </Routes>
 
       {/* will render when isLoading state is changed {isLoading ? (
@@ -84,7 +87,8 @@ function App() {
         ):(
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )} */}
-    </>
+      </div>
+    </div>
     </BrowserRouter>
   );
 }

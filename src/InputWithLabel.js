@@ -5,7 +5,7 @@ a functional reusable component that takes in props, creates some imperative log
 the focus attribute in the input field  with useRef and useEffect and returns
 an input field with attributes and a button labeled add
 */
-function InputWithLabel({ handleTitleChange, todoTitle, children, isFocused }) {
+const InputWithLabel = ({ handleTitleChange, todoTitle, children, isFocused }) => {
    const inputRef = useRef();
 
    useEffect(() => {

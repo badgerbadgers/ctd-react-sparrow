@@ -1,0 +1,17 @@
+/* li element */
+.listItem {
+    color: #001233;
+    list-style: none;
+    font-size: 1.5rem;
+    padding: 15px 5px 5px 15px;
+    height: 40px;
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+}
+/* list item button */
+.todoItemBtn {
+    padding: 0px 5px 5px 20px;
+    color: #40414a;
+    cursor: pointer;
+}

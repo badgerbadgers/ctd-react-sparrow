@@ -5,6 +5,7 @@ import style from './AddTodoForm.module.css'
 const AddTodoForm = ({ onAddTodo }) => {
   /* the initial state of todoTitle and the function that sets its' value */
   const [todoTitle, setTodoTitle] = useState('')
+  
   /*
   a handler function that takes in an onChange event gets event target value
   as a variable and then calls setTodoTitle function with event target value
@@ -42,12 +43,15 @@ const AddTodoForm = ({ onAddTodo }) => {
           type="text"
           value={todoTitle}
           name="title"
-          onChange={handleTitleChange}>
+          onChange={handleTitleChange}
+          required
+        >
         </input>
-        <button className={style.addBtn}>Add</button>
+        <button 
+        className={style.addBtn}>Add</button>
      </form>
    </div>
- )
+  )
 }
  
 export default AddTodoForm

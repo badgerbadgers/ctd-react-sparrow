@@ -37,6 +37,7 @@ For this assignment, there are some general requirements but the design is up to
   [x] added custom background image on top of new background color
     [x] added img folder in src with new background image
   [x] imported SVG component to use as an image in App component
+    [x] at smallest viewport the svg shrinks to 20px width and height
   [x] styled App Component
     [x] for smallest viewport (mobile 480px) changed to smaller
       font sizes for header and p text

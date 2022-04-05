@@ -8,6 +8,7 @@ import {
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
+import logo from './img/edit-list.svg'
 
 /*
   functional component sets state with two variables contains two useEffect hooks, functions and returns JSX
@@ -75,7 +76,7 @@ const App = () => {
     <BrowserRouter>
       <div className={style.container}>
         <div className={style.wrapper}>
-          <h2 className={style.appHeader}> Todo List <Check height="30px" width="35px" /></h2>
+          <h2 className={style.appHeader}> Todo List <Check height="30px" width="30px" /></h2>
           <AddTodoForm onAddTodo={addTodo} />
           <Routes>
           <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo}  />} />

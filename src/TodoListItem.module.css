@@ -8,10 +8,11 @@
     width: 95%;
     display: flex;
     justify-content: flex-start;
+    align-content: center;
 }
 /* list item button */
 .todoItemBtn {
-    padding: 0px 5px 5px 20px;
-    color: #40414a;
-    cursor: pointer;
+  padding: 0px 20px ;
+  color: #40414a;
+  cursor: pointer;
 }

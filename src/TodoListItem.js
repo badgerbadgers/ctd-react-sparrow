@@ -14,15 +14,15 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
   };
 
   return (
-  <div key={todo.id}>
+  <div key={todo.id} className={style.listContainer}>
     <li className={style.listItem}>
       <p>{todo.title || todo.fields.Name}</p>
       <FontAwesomeIcon
-        icon={faTrash}
-        className={style.todoItemBtn}
-        type='button' 
-        onClick={handleRemoveItem}>Remove
-      </FontAwesomeIcon>
+      icon={faTrash}
+      className={style.todoItemBtn}
+      type='button' 
+      onClick={handleRemoveItem}>Remove
+    </FontAwesomeIcon>
     </li>
   </div>
   )

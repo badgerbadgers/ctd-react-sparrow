@@ -65,10 +65,14 @@
     width: 80%;
   }
 }
-/* media queries for font sizing such as text input field */
+/* media queries for font sizing and images such as text input field and svg */
 @media only screen and (min-width: 1201px) {
   .todoInput {
     font-size: 1.5rem;
+  }
+  svg {
+    height: 35px;
+    width: 35px;
   }
 }
 @media only screen and (min-width: 1024px) {

@@ -29,7 +29,6 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
 }
 /* app.js wrapper a div that lives inside the container div */
 .wrapper {
@@ -41,7 +40,6 @@ p {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  border: 1px solid green;
 }
 /* app.js header */
 .appHeader {

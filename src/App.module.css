@@ -29,6 +29,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
 }
 /* app.js wrapper a div that lives inside the container div */
 .wrapper {
@@ -40,6 +41,7 @@ p {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  border: 1px solid green;
 }
 /* app.js header */
 .appHeader {
@@ -80,7 +82,7 @@ p {
 }
 @media only screen and (max-width: 964px) {
   .container {
-    width: 50%;
+    width: 60%;
   }
 }
 @media screen and (max-width: 768px) {
@@ -88,7 +90,7 @@ p {
     width: 70%;
   }
   .wrapper {
-    width: auto;
+    width: 90%;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -96,7 +98,7 @@ p {
     width: 90%;
   }
   .wrapper {
-    width: auto;
+    width: 90%;
   }
   p {
     padding: 5px;

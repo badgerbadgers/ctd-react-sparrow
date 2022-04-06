@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+      border: 1px solid red;
 }
 /* form input field */
 .todoInput {
@@ -33,36 +34,54 @@
   .todoFormContainer {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     padding: 10px 5px 10px 5px;
+    height: 45px !important;
   }
   .addBtn {
-    margin: auto;
-    padding: 5px;
-    width: 95%;
+    margin: 5px;
+    /* padding: 5px; */
+    width: 30%;
     text-align: center;
   }
   .todoInput {
-    width: 80%;
-    height: 35px;
+    width: 50%;
+    height: 45px;
   }
 }
 @media screen and (max-width: 768px) {
   .todoFormContainer {
-    width: 60%;
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     padding: 10px 5px 10px 5px;
   }
   .addBtn {
     padding: 10px;
-    width: 100%;
+    width: 20%;
     text-align: center;
   }
   .todoInput {
-    width: 80%;
+    width: 70%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .todoFormContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* padding: 10px 5px 10px 5px; */
+  }
+  .addBtn {
+    padding: 10px;
+    width: 20%;
+    text-align: center;
+  }
+  .todoInput {
+    width: 60%;
   }
 }
 /* media queries for font sizing and images such as text input field and svg */

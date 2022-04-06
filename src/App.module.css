@@ -33,7 +33,7 @@ p {
 /* app.js wrapper a div that lives inside the container div */
 .wrapper {
   margin-top: 100px;
-  padding: 20px;
+  padding: 20px 20px 50px 20px;
   border: 1px solid #918919;
   width: 100%;
   background-color: #e6c629;

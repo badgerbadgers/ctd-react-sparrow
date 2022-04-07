@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 10px 5px 10px 5px;
+    padding: 10px 5px 20px 5px;
     height: 45px !important;
   }
   .addBtn {
@@ -55,7 +55,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 10px 5px 10px 5px;
+    padding: 10px 5px 20px 5px;
   }
   .addBtn {
     padding: 13px;
@@ -72,7 +72,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* padding: 10px 5px 10px 5px; */
+    padding: 10px 5px 20px 5px;
   }
   .addBtn {
     padding: 13px;

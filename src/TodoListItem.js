@@ -16,7 +16,7 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
   return (
   <div key={todo.id} className={style.listContainer}>
     <li className={style.listItem}>
-      <p>{todo.title || todo.fields.Name}</p>
+      <p className={style.listText}>{todo.title || todo.fields.Name}</p>
       <FontAwesomeIcon
       icon={faTrash}
       className={style.todoItemBtn}

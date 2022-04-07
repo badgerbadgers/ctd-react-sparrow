@@ -33,6 +33,8 @@ For this assignment, there are some general requirements but the design is up to
   // Optional Tim Stretch Goals!
   [x] add validation check when submitting form (adding required works as form of validation for input field)
   [x] used flexbox on App, AddTodoForm and TodoListItem components
+  [x] consistent padding on todoForm across all viewports
+  [x] spacing between text is event across all viewports
   [x] used font awesome library to add trash icon for todoItem being rendered
   [x] added custom background image on top of new background color
     [x] added img folder in src with new background image

@@ -1,0 +1,106 @@
+/* form container */
+.todoFormContainer {
+  padding: 5px 15px 5px 15px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+/* form input field */
+.todoInput {
+  font-size: 16px;
+  border: 1px solid #b1b1b1;
+  padding: 0 16px;
+  border-radius: 4px;
+  height: 40px;
+  width: 60%;
+  margin-bottom: 4px;
+}
+/* form button */
+.addBtn {
+  background: #6370ab;
+  color: #fff;
+  padding: 10px 5px 10px 5px;
+  margin: 15px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 25%;
+  cursor: pointer;
+  border: 0;
+}
+/* media queries flexbox will change alignment of content at smaller viewports */
+@media screen and (max-width: 998px) {
+  .todoFormContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px 5px 20px 5px;
+    height: 45px !important;
+  }
+  .addBtn {
+    margin: 5px;
+    padding: 13px;
+    width: 30%;
+    text-align: center;
+  }
+  .todoInput {
+    width: 50%;
+    height: 45px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .todoFormContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px 5px 20px 5px;
+  }
+  .addBtn {
+    padding: 13px;
+    width: 20%;
+    text-align: center;
+  }
+  .todoInput {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .todoFormContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px 5px 20px 5px;
+  }
+  .addBtn {
+    padding: 13px;
+    width: 20%;
+    text-align: center;
+  }
+  .todoInput {
+    width: 60%;
+  }
+}
+/* media queries for font sizing and images such as text input field and svg */
+@media only screen and (min-width: 1201px) {
+  .todoInput {
+    font-size: 1.5rem;
+  }
+  svg {
+    height: 35px;
+    width: 35px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .todoInput {
+    font-size: 1.25rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+}

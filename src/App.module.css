@@ -1,0 +1,109 @@
+/* global styles */
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;  
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #d6d9de;
+  background-size: cover;
+  background-image: url(./img/bekky-bekks-1DGGhgD9KK4-unsplash.jpg);
+}
+h1, h2, h3, h4 {
+  font-family: 'Archivo Black', sans-serif;  
+  color: #383940;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+p {
+  color: #40414a;
+}
+/* app.js container */
+.container {
+  margin: 0 auto;
+  padding-top: 30px;
+  width: 60%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* app.js wrapper a div that lives inside the container div */
+.wrapper {
+  margin-top: 100px;
+  padding: 20px 20px 50px 20px;
+  border: 1px solid #918919;
+  width: 100%;
+  background-color: #e6c629;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+/* app.js header */
+.appHeader {
+  padding: 15px 15px 0px 15px;
+}
+/* media queries for font sizes the rem sizes get larger or smaller depending on viewport */
+@media only screen and (min-width: 1201px) {
+  .container {
+    width: 60%;
+  }
+  p {
+    font-size: 2rem;
+  }
+  h1,h2 {
+    font-size: 3.25rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  p {
+    font-size: 1.75rem;
+  }
+  h1,h2 {
+    font-size: 2.5rem;
+  }
+}
+/* media queries for the width of container and changes
+  content with flexbox check AddTodoForm.css and see flexbox properties
+*/
+@media only screen and (min-width: 1201px) {
+  .container {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .container {
+    width: 55%;
+  }
+}
+@media only screen and (max-width: 964px) {
+  .container {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    width: 70%;
+  }
+  .wrapper {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .container {
+    width: 90%;
+  }
+  .wrapper {
+    width: 90%;
+  }
+  p {
+    padding: 5px;
+    font-size: 0.9375rem;
+  }
+  h1,h2 {
+    font-size: 1.5rem;
+  }
+}
+/* check logo */

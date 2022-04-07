@@ -1,0 +1,21 @@
+/* list item button */
+.todoItemBtn {
+  padding: 3px 20px !important;
+  color: #40414a;
+  cursor: pointer;
+}
+/* li element */
+.listItem {
+    color: #001233;
+    list-style: none;
+    font-size: 1.5rem;
+    padding: 0px 5px 0px 10px;
+    height: 40px;
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+}
+.listText {
+  overflow: auto;
+}

@@ -8,7 +8,6 @@ import {
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
-import logo from './img/edit-list.svg'
 
 /*
   functional component sets state with two variables contains two useEffect hooks, functions and returns JSX

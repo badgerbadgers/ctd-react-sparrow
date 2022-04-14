@@ -18,25 +18,15 @@ If you're using NPM, run npm install --save prop-types instead
 
 //Assign Component Prop Types
 Documentation: https://reactjs.org/docs/typechecking-with-proptypes.html
-
 [x] Open AddTodoForm.js
-
 [x] Import PropTypes from the "prop-types" package
-
 [x] Below the AddTodoForm function, define the propTypes property of that function as a new object
-
   [x] Inside the object, define a property with key onAddTodo (prop name) and value PropTypes.func (function data type)
 [x] Run your application and view in browser
-
   [x] Verify that your Todo List still appears correctly with no console errors Repeat the steps above for each of the following components, be sure to use the appropriate key/value pairs depending on the props for each:
-
 [x] InputWithLabel.js
-
 [] TodoContainer.js (stretch goal)
-
 [x] TodoList.js
-
 [x] TodoListItem.js
-
 [x](Optional) Unit Testing with Jest
 View Instructions: https://github.com/Code-the-Dream-School/ctd-jest-unit-testing-practice

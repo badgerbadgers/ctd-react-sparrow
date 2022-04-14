@@ -1,57 +1,32 @@
-//Instructions lesson 3-1
-So far you've built a functional todo list, but now it's time to add some style!
+//Instructions for lesson 4-1
 
-There are multiple ways to work with CSS in React applications:
+//Improve Project Structure
+[x] Inside the src/ directory, create a new folder named components/
+  [x] Move the following files into the components/ directory
+  [x] AddTodoForm.js
+  [x] InputWithLabel.js
+  [x] TodoContainer.js (stretch goal - you may not have this in your files)
+  [x] TodoList.js
+  [x] TodoListItem.js
+  [x] Any CSS modules associated with the components above
+[x] Open src/App.js
+[] Update the import path for TodoContainer.js (stretch goal)
 
-Inline CSS
-CSS
-CSS-in-JS
-In this lesson, we would like for you to use CSS modules. Let's walk through an example:
+//Install Prop Types Library
+If you're using NPM, run npm install --save prop-types instead
+   yarn add prop-types
 
-[x] Open src/
-[x] Create a CSS module file called TodoListItem.module.css
-[x] Add a ruleset for class ListItem that changes the text color
-[x] Open src/TodoListItem.js
-[x] Import the default module (as style) from TodoListItem.module.css
-[x] Add a className to the <li> element and set the value as the class from CSS module ({style.ListItem})
-  [x] note: the style object represents all the class names in your CSS module file, so you access them like normal object properties (dot or bracket notation)
-
-//Rubric
-For this assignment, there are some general requirements but the design is up to you. This is your chance to be creative and personalize your todo list application.
-
-[x] Change the background color of the page body
-[x] Change the default text color
-[x] Customize the font family
-  [x] (Optional) Load in a font family from Google Fonts
-[x] Customize style of navigation items
-[x] Add spacing (padding/margin) between elements
-[x] Change the font size, weight, and color of all headings
-[x] Customize input and button styles
-[x] Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
-[x] (Optional) Add multi-media usage (i.e. iconography)
-
-  // Optional Tim Stretch Goals!
-  [x] add validation check when submitting form (adding required works as form of validation for input field)
-  [x] used flexbox on App, AddTodoForm and TodoListItem components
-  [x] consistent padding on todoForm across all viewports
-  [x] spacing between text is event across all viewports
-  [x] when text is longer than div there will be a scroll to accomodate the text
-  [x] used font awesome library to add trash icon for todoItem being rendered
-  [x] added custom background image on top of new background color
-    [x] added img folder in src with new background image
-  [x] imported SVG component to use as an image in App component
-    [x] at smallest viewport the svg shrinks to 20px width and height
-  [x] styled App Component
-    [x] for smallest viewport (mobile 480px) changed to smaller
-      font sizes for header and p text
-    [x] gave media queries for specific breakpoints for tablet, computer screen, tablet and mobile viewports
-    [x] gave global styling to fonts, headers gave padding to container and wrapper divs. removed global padding and margin using * selector, alots of other css styles
-  [x] styled AddTodoForm Component
-    [x] gave media queries for specific breakpoints for tablet, computer screen, tablet and mobile viewports
-    [x] styled form, button and input with padding, margin, other css properties
-  [x] style TodoListItem Component
-    [x] styled p text color added font awesome icon for trash to replace delete button, padding, margin and other css styling added
-  [x] changed from function components to concise body:
-    export const App = () => {...}
-
-This is the basic rubric, but we encourage you to think beyond this list and come up with your own ideas to make your application unique!
+//Assign Component Prop Types
+Documentation: https://reactjs.org/docs/typechecking-with-proptypes.html
+[x] Open AddTodoForm.js
+[x] Import PropTypes from the "prop-types" package
+[x] Below the AddTodoForm function, define the propTypes property of that function as a new object
+  [x] Inside the object, define a property with key onAddTodo (prop name) and value PropTypes.func (function data type)
+[x] Run your application and view in browser
+  [x] Verify that your Todo List still appears correctly with no console errors Repeat the steps above for each of the following components, be sure to use the appropriate key/value pairs depending on the props for each:
+[x] InputWithLabel.js
+[] TodoContainer.js (stretch goal)
+[x] TodoList.js
+[x] TodoListItem.js
+[x](Optional) Unit Testing with Jest
+View Instructions: https://github.com/Code-the-Dream-School/ctd-jest-unit-testing-practice

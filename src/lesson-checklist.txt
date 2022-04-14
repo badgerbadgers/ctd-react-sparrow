@@ -38,5 +38,5 @@ Documentation: https://reactjs.org/docs/typechecking-with-proptypes.html
 
 [x] TodoListItem.js
 
-[](Optional) Unit Testing with Jest
+[x](Optional) Unit Testing with Jest
 View Instructions: https://github.com/Code-the-Dream-School/ctd-jest-unit-testing-practice

@@ -32,6 +32,11 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
  
 export default TodoListItem
 
+/* 
+imported PropTypes and created an object that has properties that have a key equal
+to the prop or function being test and the value that uses PropTypes to test if output 
+is type that is written (object, string, etc)
+*/
 TodoListItem.protoTypes = {
   todo: PropTypes.object,
   onRemoveTodo: PropTypes.func

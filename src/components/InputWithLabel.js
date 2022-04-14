@@ -34,6 +34,11 @@ const InputWithLabel = ({ handleTitleChange, todoTitle, children, isFocused }) =
 
 export default InputWithLabel
 
+/* 
+imported PropTypes and created an object that has properties that have a key equal
+to the prop or function being test and the value that uses PropTypes to test if output 
+is type that is written (object, string, etc)
+*/
 InputWithLabel.propTypes = {
   handleTitleChange: PropTypes.func, 
   todoTitle: PropTypes.string,

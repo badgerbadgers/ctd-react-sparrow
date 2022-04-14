@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import style from './AddTodoForm.module.css'
+import PropTypes from 'prop-types'
  
 /* a functional component that takes in props */
 const AddTodoForm = ({ onAddTodo }) => {
+
   /* the initial state of todoTitle and the function that sets its' value */
   const [todoTitle, setTodoTitle] = useState('')
   
@@ -55,3 +57,7 @@ const AddTodoForm = ({ onAddTodo }) => {
 }
  
 export default AddTodoForm
+
+AddTodoForm.propTypes = {
+  onAddTodo: PropTypes.func
+}

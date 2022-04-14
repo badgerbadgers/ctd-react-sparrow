@@ -5,8 +5,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import AddTodoForm from './AddTodoForm'
-import TodoList from './TodoList'
+import AddTodoForm from './components/AddTodoForm'
+import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
 import logo from './img/edit-list.svg'
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import TodoListItem from './TodoListItem'
+import PropTypes from 'prop-types'
  
 /*
  a functional component that takes in props and maps through that data
@@ -28,3 +29,8 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
 }
  
 export default TodoList
+
+TodoList.propTypes = {
+  todoList: PropTypes.array,
+  onRemoveTodo: PropTypes.func,
+}

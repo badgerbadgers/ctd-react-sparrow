@@ -1,15 +1,15 @@
 //Instructions for lesson 4-1
 
 //Improve Project Structure
-[] Inside the src/ directory, create a new folder named components/
-  [] Move the following files into the components/ directory
-  [] AddTodoForm.js
-  [] InputWithLabel.js
-  [] TodoContainer.js (stretch goal - you may not have this in your files)
-  [] TodoList.js
-  [] TodoListItem.js
-  [] Any CSS modules associated with the components above
-[] Open src/App.js
+[x] Inside the src/ directory, create a new folder named components/
+  [x] Move the following files into the components/ directory
+  [x] AddTodoForm.js
+  [x] InputWithLabel.js
+  [x] TodoContainer.js (stretch goal - you may not have this in your files)
+  [x] TodoList.js
+  [x] TodoListItem.js
+  [x] Any CSS modules associated with the components above
+[x] Open src/App.js
 [] Update the import path for TodoContainer.js (stretch goal)
 
 //Install Prop Types Library
@@ -19,24 +19,24 @@ If you're using NPM, run npm install --save prop-types instead
 //Assign Component Prop Types
 Documentation: https://reactjs.org/docs/typechecking-with-proptypes.html
 
-[] Open AddTodoForm.js
+[x] Open AddTodoForm.js
 
-[] Import PropTypes from the "prop-types" package
+[x] Import PropTypes from the "prop-types" package
 
-[] Below the AddTodoForm function, define the propTypes property of that function as a new object
+[x] Below the AddTodoForm function, define the propTypes property of that function as a new object
 
-  [] Inside the object, define a property with key onAddTodo (prop name) and value PropTypes.func (function data type)
-[] Run your application and view in browser
+  [x] Inside the object, define a property with key onAddTodo (prop name) and value PropTypes.func (function data type)
+[x] Run your application and view in browser
 
-  [] Verify that your Todo List still appears correctly with no console errors Repeat the steps above for each of the following components, be sure to use the appropriate key/value pairs depending on the props for each:
+  [x] Verify that your Todo List still appears correctly with no console errors Repeat the steps above for each of the following components, be sure to use the appropriate key/value pairs depending on the props for each:
 
-[] InputWithLabel.js
+[x] InputWithLabel.js
 
 [] TodoContainer.js (stretch goal)
 
-[] TodoList.js
+[x] TodoList.js
 
-[] TodoListItem.js
+[x] TodoListItem.js
 
 [](Optional) Unit Testing with Jest
 View Instructions: https://github.com/Code-the-Dream-School/ctd-jest-unit-testing-practice

@@ -1,7 +1,9 @@
 import React from 'react'
 import style from './TodoListItem.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types'
+
 /*
 a functional component that takes in props and returns a div
 with the todo item's key and p text containing the title of the todo item or (||) the api data's
@@ -29,3 +31,8 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
 }
  
 export default TodoListItem
+
+TodoListItem.protoTypes = {
+  todo: PropTypes.object,
+  onRemoveTodo: PropTypes.func
+}

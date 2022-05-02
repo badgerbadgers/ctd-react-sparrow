@@ -8,7 +8,7 @@ import {
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
-import logo from './img/edit-list.svg'
+import TodoContainer from './TodoContainer';
 
 /*
   functional component sets state with two variables contains two useEffect hooks, functions and returns JSX
@@ -37,7 +37,6 @@ const App = () => {
     .then(result => result.json())
     .then(result => setTodoList(result.records))
   }, [])
-
   /*
   addTodo function that takes in a variable newTodo 
   then creates a new variable newTodos equal to the newTodo added to the
@@ -66,11 +65,11 @@ const App = () => {
   a 2nd useEffect hook, this will run if isLoading state is false, it will add todos to your local storage
   saving them with a key and the value as a string, this useEffect will run anytime the todoList variable changes
   */
-  useEffect(() => {
-    if(!isLoading) {
-      return localStorage.setItem('savedTodoList', JSON.stringify(todoList))
-    }
-  },[todoList])
+  // useEffect(() => {
+  //   if(!isLoading) {
+  //     return localStorage.setItem('savedTodoList', JSON.stringify(todoList))
+  //   }
+  // },[todoList])
 
   return (
     <BrowserRouter>
@@ -80,6 +79,7 @@ const App = () => {
           <AddTodoForm onAddTodo={addTodo} />
           <Routes>
           <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo}  />} />
+          <Route path='/todocontainer' element={<TodoContainer tableName={todoList} />} />
           <Route path='/new' element={<h1>"New Todo List"</h1>} />
       </Routes>
 

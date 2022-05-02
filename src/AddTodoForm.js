@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import style from './AddTodoForm.module.css'
+import PropTypes from 'prop-types'
  
 /* a functional component that takes in props */
 const AddTodoForm = ({ onAddTodo }) => {
+
   /* the initial state of todoTitle and the function that sets its' value */
   const [todoTitle, setTodoTitle] = useState('')
   
@@ -55,3 +57,12 @@ const AddTodoForm = ({ onAddTodo }) => {
 }
  
 export default AddTodoForm
+
+/* 
+imported PropTypes and created an object that has properties that have a key equal
+to the prop or function being test and the value that uses PropTypes to test if output 
+is type that is written (object, string, etc)
+*/
+AddTodoForm.propTypes = {
+  onAddTodo: PropTypes.func
+}

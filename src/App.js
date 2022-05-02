@@ -8,7 +8,7 @@ import {
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
-import TodoContainer from './TodoContainer';
+// import TodoContainer from './TodoContainer';
 
 /*
   functional component sets state with two variables contains two useEffect hooks, functions and returns JSX
@@ -79,7 +79,7 @@ const App = () => {
           <AddTodoForm onAddTodo={addTodo} />
           <Routes>
           <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo}  />} />
-          <Route path='/todocontainer' element={<TodoContainer tableName={todoList} />} />
+          {/* <Route path='/todocontainer' element={<TodoContainer tableName={todoList} />} /> */}
           <Route path='/new' element={<h1>"New Todo List"</h1>} />
       </Routes>
 

@@ -14,12 +14,12 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
         {todoList.map((item) => {
         return(
           <div key={item.id}>
-           <TodoListItem 
+            <TodoListItem 
             id={item.id} 
             key={item.id} 
             todo={item} 
             onRemoveTodo={onRemoveTodo}
-          />
+            />
           </div>
         )
         })}

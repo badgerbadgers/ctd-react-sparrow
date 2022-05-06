@@ -4,11 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 
+
 /*
-a functional component that takes in props and returns a div
-with the todo item's key and p text containing the title of the todo item or (||) the api data's
-name property. there is a delete button that onClick will run a callback function that will
-then remove that clicked todo item
+a component that returns a div with the list name, an icon and a remove button
 */
 const TodoListItem = ({ todo, onRemoveTodo }) => {
   const handleRemoveItem = () => {

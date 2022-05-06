@@ -1,54 +1,23 @@
-// Stretch Goal TodoContainer Component
-//If project is missing (Bonus) TodoContainer.js, then apply these requirements to App.js instead
-
-TodoContainer.js contains the following:
-
-[x] Functional React component named TodoContainer with one prop: tableName
-[] Correct propTypes for the prop(s) listed
-[x] State variable named todoList with default value of an empty Array ([])
-[x] State variable named isLoading with default value of true
-[x] useEffect hook with dependency tableName (prop) and callback function that does the following:
-  [x] Using Fetch API, GET table records from Airtable for the given tableName
-  [x] Parse JSON response
-  [x] Sort response data by one or more properties
-  [x] Set todoList state to sorted data
-  [x] Set isLoading to false
-[x] Function named addTodo with parameter title that does the following:
-  [] Using Fetch API, POST new record to Airtable with the given title field value
-  [] Parse JSON response
-  [] Set todoList state to new Array containing the added record
-  [] (Bonus) Re-sort list data
-[] Function named removeTodo with parameter id that does the following:
-  [] Using Fetch API, DELETE record from Airtable given id
-  [] Parse JSON response
-  [] Set todoList state to new Array NOT containing the removed record
-[] Return statement that renders the following JSX:
-  [] Heading level-one with dynamic tableName
-  [] AddTodoForm Component
-  [] Conditional rendering based on isLoading state:
-[] If true, paragraph that reads "Loading..." or some equivalent message
-[] If false, TodoList Component
-
 //Instructions for lesson 5-1
 
 //Sort by Airtable view order
-[] Open TodoContainer.js
-[] Locate the fetch request for retrieving list items from Airtable API
-[] At the end of the URL, append a query parameter with name view and value Grid%20view (or the name of your view in Airtable if you changed it)
-  [] hint: URL query begins with a question mark (?) and is following by name/value pairs separated by an ampersand (name=value&name=value)
-[] Run your application and view in browser
-[] Verify that the order of list items now matches the order seen in Airtable
-[] In Airtable, open the corresponding table and drag/drop the last record above the first
-[] Refresh your application and verify that the same list item now appears at the top
+[x] Open TodoContainer.js(App.js)
+[x] Locate the fetch request for retrieving list items from Airtable API
+[x] At the end of the URL, append a query parameter with name view and value Grid%20view (or the name of your view in Airtable if you changed it)
+  [x] hint: URL query begins with a question mark (?) and is following by name/value pairs separated by an ampersand (name=value&name=value)
+[x] Run your application and view in browser
+[x] Verify that the order of list items now matches the order seen in Airtable
+[x] In Airtable, open the corresponding table and drag/drop the last record above the first
+[x] Refresh your application and verify that the same list item now appears at the top
 
 //Sort by Airtable field
-[] Open TodoContainer.js
-[] Locate the same fetch URL from the previous section
-[] At the end of the URL, append the following query parameters (don't forget the & delimeter):
-[] sort[0][field] with value Title
-[] sort[0][direction] with value "asc" (short for ascending which means low-to-high or A-to-Z)
-[] View your application in browser
-[] Verify that your list items now appear in alphabetical order by "Title"
+[x] Open TodoContainer.js
+[x] Locate the same fetch URL from the previous section
+[x] At the end of the URL, append the following query parameters (don't forget the & delimeter):
+[x] sort[0][field] with value Title
+[x] sort[0][direction] with value "asc" (short for ascending which means low-to-high or A-to-Z)
+[x] View your application in browser
+[x] Verify that your list items now appear in alphabetical order by "Title"
 
 //Sort with JavaScript
 [] Open TodoContainer.js

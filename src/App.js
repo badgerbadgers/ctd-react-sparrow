@@ -8,40 +8,69 @@ import {
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
-// import TodoContainer from './TodoContainer';
+
+/* url used for getting data has been appended with view and sort parameters */
+  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
 
 /*
-  functional component sets state with two variables contains two useEffect hooks, functions and returns JSX
+  functional component contains state for API data, 
 */
 const App = () => {
   const [todoList, setTodoList] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  // const [isLoading, setIsLoading] = useState(true)
 
-  /*
-  initial useEffect hook call the built in fetch method it has 2 arguments. the first argument is
-  the url with a variable for AIRTABLE_BASE_ID used with backticks (`) and template literal syntax(${}). The second is the
-  option object that provides an object with Authorization property, this property contains the API key
-  also written similar to the AIRTABLE_BASE_ID with template literal and backticks. There is a .then
-  chained after the fetch and takes the result data and turns it into a JSON object. Another .then and calls
-  the setTodoList function to set result. records as the new todoList.
+  const getData = () => {
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+    }
+  })
+  .then(result => result.json())
+  // .then(result => result.records.sort(compare))
+  .then(result => {
+    result.records.sort()
+    setTodoList(result.records)})
+  }
+
   
-  The second argument for useEffect is an empty array as second argument
+  /* compare function that is passed into sort method returns items ascending order */
+  function ascendingOrder (a, b) {
+    if(a.fields.Name < b.fields.Name) {
+      return - 1
+    }
+    if(a.fields.Name > b.fields.Name) {
+      return 1
+    }
+    return 0
+  }
+
+  /* compare function that is passed into sort method returns items descending order */
+  function descendingOrder (a, b) {
+    if(a.fields.Name < b.fields.Name) {
+      return 1
+    }
+    if(a.fields.Name > b.fields.Name) {
+      return -1
+    }
+    return 0
+  }
+  /*
+  initial useEffect hook that gets API data from airtable and sets data as todoList
   */
   useEffect(() => {
-  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`
-    fetch(url, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
-      }
-    })
-    .then(result => result.json())
-    .then(result => setTodoList(result.records))
+      fetch(url, {
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+    }
+  })
+  .then(result => result.json())
+  .then(result => {
+    result.records.sort(ascendingOrder)
+    setTodoList(result.records)})
   }, [])
+
   /*
-  addTodo function that takes in a variable newTodo 
-  then creates a new variable newTodos equal to the newTodo added to the
-  todoList state variable the setTodoList then runs and sets the todoList
-  to equal the newTodos variable
+  addTodo function adds newTodo to current todoList and sets that new array as current todoList
   */
   const addTodo = (newTodo) => {
    let newTodos = [newTodo, ...todoList]
@@ -49,28 +78,13 @@ const App = () => {
   };
 
   /*
-  a function that takes in an id as paramater and creates a variable that is
-  equal to a filter method applied to todoList state, filter checks if the current
-  id is not equal to the current todo.id if not equal return todo, then the set function
-  setTodoList will return the newTodoList
+  remove todo functions takes id and filters out items that are not equal to item id
   */
   const removeTodo = (id) => {
-    const newTodoList = todoList.filter(
-      (todo) => id !== todo.id
-    )
+    const newTodoList = todoList.filter((todo) => id !== todo.id)
     setTodoList(newTodoList)
   };
   
-  /*
-  a 2nd useEffect hook, this will run if isLoading state is false, it will add todos to your local storage
-  saving them with a key and the value as a string, this useEffect will run anytime the todoList variable changes
-  */
-  // useEffect(() => {
-  //   if(!isLoading) {
-  //     return localStorage.setItem('savedTodoList', JSON.stringify(todoList))
-  //   }
-  // },[todoList])
-
   return (
     <BrowserRouter>
       <div className={style.container}>
@@ -78,16 +92,9 @@ const App = () => {
           <h2 className={style.appHeader}> Todo List <Check height="30px" width="30px" /></h2>
           <AddTodoForm onAddTodo={addTodo} />
           <Routes>
-          <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo}  />} />
-          {/* <Route path='/todocontainer' element={<TodoContainer tableName={todoList} />} /> */}
-          <Route path='/new' element={<h1>"New Todo List"</h1>} />
-      </Routes>
-
-      {/* will render when isLoading state is changed {isLoading ? (
-        <p>Loading ...</p> 
-        ):(
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )} */}
+            <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo} />} />
+            <Route path='/new' element={<h1>"New Todo List"</h1>} />
+          </Routes>
       </div>
     </div>
     </BrowserRouter>

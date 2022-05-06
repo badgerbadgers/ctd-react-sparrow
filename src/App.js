@@ -26,7 +26,6 @@ const App = () => {
     }
   })
   .then(result => result.json())
-  // .then(result => result.records.sort(compare))
   .then(result => {
     result.records.sort()
     setTodoList(result.records)})

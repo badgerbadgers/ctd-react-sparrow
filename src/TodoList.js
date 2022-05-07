@@ -9,7 +9,8 @@ import PropTypes from 'prop-types'
  passes down props
 */
 const TodoList = ({ todoList, onRemoveTodo }) => {
-  const [sorted, setSorted] = useState([])  
+  const [sorted, setSorted] = useState([]) 
+  const [isClicked, setIsClicked] = useState(false) 
 
     /* compare function that is passed into sort method returns items ascending order */
     function ascendingOrder (a, b) {
@@ -33,7 +34,7 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
       return 0
     }
 
-  const handleSort = async (order) => {
+  const handleSort = (order) => {
     let sorted = todoList.sort(order)
     setSorted(sorted);
     setIsClicked(!isClicked)

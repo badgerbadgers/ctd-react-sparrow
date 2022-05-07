@@ -20,26 +20,26 @@
 [x] Verify that your list items now appear in alphabetical order by "Title"
 
 //Sort with JavaScript
-[] Open TodoContainer.js
-[] Locate the same fetch request from the previous section
-[] Inside the final then method, start a new line above the existing code
-[] Call the sort method on data.records and pass it a custom callback function:
-[] function should take two parameters: (1) objectA and (2) objectB
-[] function should compare the Title field for each object and return the following:
-  [] -1 if "Title A" is less than "Title B"
-  [] 0 if "Title A" and "Title B" are the same
-[] 1 if "Title A" is greater than "Title B"
-[] View your application in browser
-  [] Verify that your list items still appear in ascending alphabetical order by "Title" (A-to-Z)
+[x] Open TodoContainer.js
+[x] Locate the same fetch request from the previous section
+[x] Inside the final then method, start a new line above the existing code
+[x] Call the sort method on data.records and pass it a custom callback function:
+[x] function should take two parameters: (1) objectA and (2) objectB
+[x] function should compare the Title field for each object and return the following:
+  [x] -1 if "Title A" is less than "Title B"
+  [x] 0 if "Title A" and "Title B" are the same
+[x] 1 if "Title A" is greater than "Title B"
+[x] View your application in browser
+  [x] Verify that your list items still appear in ascending alphabetical order by "Title" (A-to-Z)
 
 Now let's try reversing the order...
 
-[] Update the sort callback function to return the following:
-  [] 1 if "Title A" is less than "Title B"
-  [] 0 if "Title A" and "Title B" are the same
-  [] -1 if "Title A" is greater than "Title B"
-[] View your application in browser
-  [] Verify that your list items now appear in descending alphabetical order by "Title" (Z-to-A)
+[x] Update the sort callback function to return the following:
+  [x] 1 if "Title A" is less than "Title B"
+  [x] 0 if "Title A" and "Title B" are the same
+  [x] -1 if "Title A" is greater than "Title B"
+[x] View your application in browser
+  [x] Verify that your list items now appear in descending alphabetical order by "Title" (Z-to-A)
 
 //Stretch Goals
 [] Create a toggle button so the user can switch between ascending and descending sort order

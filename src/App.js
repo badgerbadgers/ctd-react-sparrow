@@ -30,28 +30,6 @@ const App = () => {
     setTodoList(result.records)})
   }
 
-  
-  /* compare function that is passed into sort method returns items ascending order */
-  function ascendingOrder (a, b) {
-    if(a.fields.Name < b.fields.Name) {
-      return - 1
-    }
-    if(a.fields.Name > b.fields.Name) {
-      return 1
-    }
-    return 0
-  }
-
-  /* compare function that is passed into sort method returns items descending order */
-  function descendingOrder (a, b) {
-    if(a.fields.Name < b.fields.Name) {
-      return 1
-    }
-    if(a.fields.Name > b.fields.Name) {
-      return -1
-    }
-    return 0
-  }
   /*
   initial useEffect hook that gets API data from airtable and sets data as todoList
   */
@@ -62,9 +40,7 @@ const App = () => {
     }
   })
   .then(result => result.json())
-  .then(result => {
-    result.records.sort(ascendingOrder)
-    setTodoList(result.records)})
+  .then(result => setTodoList(result.records))
   }, [])
 
   /*

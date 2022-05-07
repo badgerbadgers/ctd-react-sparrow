@@ -1,17 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TodoListItem from './TodoListItem'
 import PropTypes from 'prop-types'
- 
+
+
 /*
  a functional component that takes in props and maps through that data
  it will then return a div with key and a TodoListItem component that
  passes down props
 */
 const TodoList = ({ todoList, onRemoveTodo }) => {
+  const [sorted, setSorted] = useState([])  
+
+    /* compare function that is passed into sort method returns items ascending order */
+    function ascendingOrder (a, b) {
+      if(a.fields.Name < b.fields.Name) {
+        return - 1
+      }
+      if(a.fields.Name > b.fields.Name) {
+        return 1
+      }
+      return 0
+    }
+  
+    /* compare function that is passed into sort method returns items descending order */
+    function descendingOrder (a, b) {
+      if(a.fields.Name < b.fields.Name) {
+        return 1
+      }
+      if(a.fields.Name > b.fields.Name) {
+        return -1
+      }
+      return 0
+    }
+
+  const handleSort = async (order) => {
+    let sorted = todoList.sort(order)
+    setSorted(sorted);
+    setIsClicked(!isClicked)
+  };
+
+  const sortedList = todoList
+
   return(
     <>
       <ul>
-        {todoList.map((item) => {
+      <button type="button" onClick={() => handleSort(ascendingOrder)}>
+        Ascending
+      </button>
+      <button type="button" onClick={() => handleSort(descendingOrder)}>
+        Descending
+      </button>
+        {sortedList.map((item) => {
         return(
           <div key={item.id}>
             <TodoListItem 

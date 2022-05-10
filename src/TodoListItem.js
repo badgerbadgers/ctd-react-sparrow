@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './TodoListItem.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 
 /*
@@ -16,7 +16,7 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
   <div key={todo.id} className={style.listContainer}>
     <li className={style.listItem}>
       <p className={style.listText}>{todo.title || todo.fields.Name}
-        <FontAwesomeIcon icon={faWindowClose} />
+        {/* <FontAwesomeIcon icon={faWindowClose} onClick={strikethrough} /> */}
       </p>
       <FontAwesomeIcon
       icon={faTrash}

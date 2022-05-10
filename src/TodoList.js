@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import TodoListItem from './TodoListItem'
 import PropTypes from 'prop-types'
 import { FaSort } from 'react-icons/fa'
@@ -14,10 +14,6 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
   const [isAscending, setIsAscending] = useState(true)
   const [updatedTodoList, setUpdatedTodoList] = useState([])
   
-  useEffect(() => {
-    setUpdatedTodoList(todoList)
-  })
-
   function sort(a, b) {
     /* sort in ascending order */
     if(!isAscending) {
@@ -52,7 +48,19 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
     <>
       <ul>
       <FaSort onClick={() => handleSort(sort)} className={style.sortBtn} />
-        {updatedTodoList.map((item) => {
+        {updatedTodoList.length === 0 ?
+        todoList.map((item) => {
+        return(
+          <div key={item.id}>
+            <TodoListItem 
+            id={item.id} 
+            key={item.id} 
+            todo={item} 
+            onRemoveTodo={onRemoveTodo}
+            />
+          </div>
+        )
+        }) : updatedTodoList.map((item) => {
         return(
           <div key={item.id}>
             <TodoListItem 

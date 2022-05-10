@@ -11,36 +11,37 @@ import style from './TodoListItem.module.css'
  passes down props
 */
 const TodoList = ({ todoList, onRemoveTodo }) => {
-  const [isAscending, setIsAscending] = useState(false)
-  const [updatedTodoList, setUpdatedTodoList] = useState(todoList)
-
+  const [isAscending, setIsAscending] = useState(true)
+  const [updatedTodoList, setUpdatedTodoList] = useState([])
+  
   useEffect(() => {
-    setUpdatedTodoList(updatedTodoList)
-  }, [])
-    function sort(a, b) {
-      /* sort in ascending order */
-      if(!isAscending) {
-        setIsAscending(true)
-        if(a.fields.Name < b.fields.Name) {
-          return -1
-        }
-        if(a.fields.Name > b.fields.Name) {
-          return 1
-        }
-        return 0
+    setUpdatedTodoList(todoList)
+  })
+
+  function sort(a, b) {
+    /* sort in ascending order */
+    if(!isAscending) {
+      setIsAscending(!isAscending)
+      if(a.fields.Name < b.fields.Name) {
+        return -1
       }
-      /* sort in descending order */
-      if (isAscending) {
-        setIsAscending(false)
-        if(a.fields.Name < b.fields.Name) {
-          return 1
-        }
-        if(a.fields.Name > b.fields.Name) {
-          return -1
-        }
-        return 0
+      if(a.fields.Name > b.fields.Name) {
+        return 1
       }
+      return 0
     }
+    /* sort in descending order */
+    if (isAscending) {
+      setIsAscending(!isAscending)
+      if(a.fields.Name < b.fields.Name) {
+        return 1
+      }
+      if(a.fields.Name > b.fields.Name) {
+        return -1
+      }
+      return 0
+    }
+  }
 
   const handleSort = (order) => {
     let sorted = todoList.sort(order)

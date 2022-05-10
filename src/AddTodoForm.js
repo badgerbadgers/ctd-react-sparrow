@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import style from './AddTodoForm.module.css'
 import InputWithLabel from './InputWithLabel'
 
-const AddTodoForm = ({ onAddTodo, ascendingOrder, descendingOrder, todoList }) => {
+const AddTodoForm = ({ onAddTodo }) => {
   /* the initial state of todoTitle and the function that sets its' value */
   const [todoTitle, setTodoTitle] = useState('')
   
@@ -10,6 +10,7 @@ const AddTodoForm = ({ onAddTodo, ascendingOrder, descendingOrder, todoList }) =
   a handler function takes in event and event value is new value of input field
   */
   const handleTitleChange = (event) => {
+    console.log('handle change event',event.target.value)
     let newTodoTitle = event.target.value
     setTodoTitle(newTodoTitle)
   };

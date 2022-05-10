@@ -18,23 +18,11 @@ const App = () => {
   const [todoList, setTodoList] = useState([])
   // const [isLoading, setIsLoading] = useState(true)
 
-  const getData = () => {
-  fetch(url, {
-    headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
-    }
-  })
-  .then(result => result.json())
-  .then(result => {
-    result.records.sort()
-    setTodoList(result.records)})
-  }
-
   /*
   initial useEffect hook that gets API data from airtable and sets data as todoList
   */
   useEffect(() => {
-      fetch(url, {
+    fetch(url, {
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
     }
@@ -63,11 +51,11 @@ const App = () => {
     <BrowserRouter>
       <div className={style.container}>
         <div className={style.wrapper}>
-          <h2 className={style.appHeader}> Todo List <Check height="30px" width="30px" /></h2>
+          <h2 className={style.appHeader}> Todo List <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" /></h2>
           <AddTodoForm onAddTodo={addTodo} />
           <Routes>
             <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo} />} />
-            <Route path='/new' element={<h1>"New Todo List"</h1>} />
+            <Route path='/new' element={ <h1>"New Todo List"</h1> } />
           </Routes>
       </div>
     </div>

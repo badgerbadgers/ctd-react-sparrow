@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import TodoListItem from './TodoListItem'
 import PropTypes from 'prop-types'
+import { FaSort } from 'react-icons/fa'
+import style from './TodoListItem.module.css'
 
 
 /*
@@ -9,49 +11,47 @@ import PropTypes from 'prop-types'
  passes down props
 */
 const TodoList = ({ todoList, onRemoveTodo }) => {
-  const [sorted, setSorted] = useState([]) 
-  const [isClicked, setIsClicked] = useState(false) 
+  const [isAscending, setIsAscending] = useState(false)
+  const [updatedTodoList, setUpdatedTodoList] = useState(todoList)
 
-    /* compare function that is passed into sort method returns items ascending order */
-    function ascendingOrder (a, b) {
-      if(a.fields.Name < b.fields.Name) {
-        return - 1
+  useEffect(() => {
+    setUpdatedTodoList(updatedTodoList)
+  }, [])
+    function sort(a, b) {
+      /* sort in ascending order */
+      if(!isAscending) {
+        setIsAscending(true)
+        if(a.fields.Name < b.fields.Name) {
+          return -1
+        }
+        if(a.fields.Name > b.fields.Name) {
+          return 1
+        }
+        return 0
       }
-      if(a.fields.Name > b.fields.Name) {
-        return 1
+      /* sort in descending order */
+      if (isAscending) {
+        setIsAscending(false)
+        if(a.fields.Name < b.fields.Name) {
+          return 1
+        }
+        if(a.fields.Name > b.fields.Name) {
+          return -1
+        }
+        return 0
       }
-      return 0
-    }
-  
-    /* compare function that is passed into sort method returns items descending order */
-    function descendingOrder (a, b) {
-      if(a.fields.Name < b.fields.Name) {
-        return 1
-      }
-      if(a.fields.Name > b.fields.Name) {
-        return -1
-      }
-      return 0
     }
 
   const handleSort = (order) => {
     let sorted = todoList.sort(order)
-    setSorted(sorted);
-    setIsClicked(!isClicked)
+    setUpdatedTodoList(sorted)
   };
-
-  const sortedList = todoList
 
   return(
     <>
       <ul>
-      <button type="button" onClick={() => handleSort(ascendingOrder)}>
-        Ascending
-      </button>
-      <button type="button" onClick={() => handleSort(descendingOrder)}>
-        Descending
-      </button>
-        {sortedList.map((item) => {
+      <FaSort onClick={() => handleSort(sort)} className={style.sortBtn} />
+        {updatedTodoList.map((item) => {
         return(
           <div key={item.id}>
             <TodoListItem 

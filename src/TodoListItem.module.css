@@ -19,3 +19,12 @@
 .listText {
   overflow: auto;
 }
+.sortBtn {
+  color: #6370ab;
+  cursor: pointer;
+  border: 1px solid #6370ab;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0 20px 10px;
+  background-color: #fff;
+}

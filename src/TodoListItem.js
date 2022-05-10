@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 
-
 /*
 a component that returns a div with the list name, an icon and a remove button
 */

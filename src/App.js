@@ -16,7 +16,7 @@ import { ReactComponent as Check } from './img/edit-list.svg'
 */
 const App = () => {
   const [todoList, setTodoList] = useState([])
-  // const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   /*
   initial useEffect hook that gets API data from airtable and sets data as todoList
@@ -29,6 +29,7 @@ const App = () => {
   })
   .then(result => result.json())
   .then(result => setTodoList(result.records))
+  setIsLoading(true)
   }, [])
 
   /*
@@ -53,10 +54,10 @@ const App = () => {
         <div className={style.wrapper}>
           <h2 className={style.appHeader}> Todo List <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" /></h2>
           <AddTodoForm onAddTodo={addTodo} />
+          {!isLoading ? <p>is loading...</p> :
           <Routes>
-            <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo} />} />
-            <Route path='/new' element={ <h1>"New Todo List"</h1> } />
-          </Routes>
+            <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo} />} /> 
+          </Routes> }
       </div>
     </div>
     </BrowserRouter>

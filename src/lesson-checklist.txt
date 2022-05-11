@@ -1,57 +1,46 @@
-//Instructions lesson 3-1
-So far you've built a functional todo list, but now it's time to add some style!
+//Instructions for lesson 5-1
 
-There are multiple ways to work with CSS in React applications:
+//Sort by Airtable view order
+[x] Open TodoContainer.js(App.js)
+[x] Locate the fetch request for retrieving list items from Airtable API
+[x] At the end of the URL, append a query parameter with name view and value Grid%20view (or the name of your view in Airtable if you changed it)
+  [x] hint: URL query begins with a question mark (?) and is following by name/value pairs separated by an ampersand (name=value&name=value)
+[x] Run your application and view in browser
+[x] Verify that the order of list items now matches the order seen in Airtable
+[x] In Airtable, open the corresponding table and drag/drop the last record above the first
+[x] Refresh your application and verify that the same list item now appears at the top
 
-Inline CSS
-CSS
-CSS-in-JS
-In this lesson, we would like for you to use CSS modules. Let's walk through an example:
+//Sort by Airtable field
+[x] Open TodoContainer.js
+[x] Locate the same fetch URL from the previous section
+[x] At the end of the URL, append the following query parameters (don't forget the & delimeter):
+[x] sort[0][field] with value Title
+[x] sort[0][direction] with value "asc" (short for ascending which means low-to-high or A-to-Z)
+[x] View your application in browser
+[x] Verify that your list items now appear in alphabetical order by "Title"
 
-[x] Open src/
-[x] Create a CSS module file called TodoListItem.module.css
-[x] Add a ruleset for class ListItem that changes the text color
-[x] Open src/TodoListItem.js
-[x] Import the default module (as style) from TodoListItem.module.css
-[x] Add a className to the <li> element and set the value as the class from CSS module ({style.ListItem})
-  [x] note: the style object represents all the class names in your CSS module file, so you access them like normal object properties (dot or bracket notation)
+//Sort with JavaScript
+[x] Open TodoContainer.js
+[x] Locate the same fetch request from the previous section
+[x] Inside the final then method, start a new line above the existing code
+[x] Call the sort method on data.records and pass it a custom callback function:
+[x] function should take two parameters: (1) objectA and (2) objectB
+[x] function should compare the Title field for each object and return the following:
+  [x] -1 if "Title A" is less than "Title B"
+  [x] 0 if "Title A" and "Title B" are the same
+[x] 1 if "Title A" is greater than "Title B"
+[x] View your application in browser
+  [x] Verify that your list items still appear in ascending alphabetical order by "Title" (A-to-Z)
 
-//Rubric
-For this assignment, there are some general requirements but the design is up to you. This is your chance to be creative and personalize your todo list application.
+Now let's try reversing the order...
 
-[x] Change the background color of the page body
-[x] Change the default text color
-[x] Customize the font family
-  [x] (Optional) Load in a font family from Google Fonts
-[x] Customize style of navigation items
-[x] Add spacing (padding/margin) between elements
-[x] Change the font size, weight, and color of all headings
-[x] Customize input and button styles
-[x] Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
-[x] (Optional) Add multi-media usage (i.e. iconography)
+[x] Update the sort callback function to return the following:
+  [x] 1 if "Title A" is less than "Title B"
+  [x] 0 if "Title A" and "Title B" are the same
+  [x] -1 if "Title A" is greater than "Title B"
+[x] View your application in browser
+  [x] Verify that your list items now appear in descending alphabetical order by "Title" (Z-to-A)
 
-  // Optional Tim Stretch Goals!
-  [x] add validation check when submitting form (adding required works as form of validation for input field)
-  [x] used flexbox on App, AddTodoForm and TodoListItem components
-  [x] consistent padding on todoForm across all viewports
-  [x] spacing between text is event across all viewports
-  [x] when text is longer than div there will be a scroll to accomodate the text
-  [x] used font awesome library to add trash icon for todoItem being rendered
-  [x] added custom background image on top of new background color
-    [x] added img folder in src with new background image
-  [x] imported SVG component to use as an image in App component
-    [x] at smallest viewport the svg shrinks to 20px width and height
-  [x] styled App Component
-    [x] for smallest viewport (mobile 480px) changed to smaller
-      font sizes for header and p text
-    [x] gave media queries for specific breakpoints for tablet, computer screen, tablet and mobile viewports
-    [x] gave global styling to fonts, headers gave padding to container and wrapper divs. removed global padding and margin using * selector, alots of other css styles
-  [x] styled AddTodoForm Component
-    [x] gave media queries for specific breakpoints for tablet, computer screen, tablet and mobile viewports
-    [x] styled form, button and input with padding, margin, other css properties
-  [x] style TodoListItem Component
-    [x] styled p text color added font awesome icon for trash to replace delete button, padding, margin and other css styling added
-  [x] changed from function components to concise body:
-    export const App = () => {...}
-
-This is the basic rubric, but we encourage you to think beyond this list and come up with your own ideas to make your application unique!
+//Stretch Goals
+[] Create a toggle button so the user can switch between ascending and descending sort order
+[] Sort by a different field, such as createdTime

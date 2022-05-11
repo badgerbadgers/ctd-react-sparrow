@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import TodoListItem from './TodoListItem'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { FaSort, FaClock } from 'react-icons/fa'
 import style from './TodoListItem.module.css'
 
@@ -11,10 +11,9 @@ import style from './TodoListItem.module.css'
 */
 const TodoList = ({ todoList, onRemoveTodo }) => {
   const [isAscending, setIsAscending] = useState(true)
-  // const [updatedTodoList, setUpdatedTodoList] = useState([])
   const [formattedTodos, setFormattedTodos] = useState([])
 
-
+  /* a compare function */
   function titleSort(a, b) {
     /* sort in ascending order */
     if(!isAscending) {
@@ -65,12 +64,13 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
     }
   }
 
+  /* runs onclick sorts time */
   const handleSort = (order) => {
-    console.log('formatted',formattedTodoList)
     const updatedTodos = formattedTodoList.sort(timeSort)
     setFormattedTodos(updatedTodos)
   }
 
+  /* maps array and splits at the 'T', returns a new array and object */
    const formattedTodoList = 
       todoList.map((item) => {
         const currentDate = item.createdTime.split('T')
@@ -86,11 +86,6 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
         }
         return todo
       })
-  
-    // setFormattedTodos(formattedTodoList)
-    // console.log('formatted list', formattedTodoList)
-    // const sortedDate = date.sort((a,b) => b - a)
-    // console.log(sortedDate)
 
   return(
     <>
@@ -100,25 +95,27 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
           <FaClock onClick={() => handleSort(timeSort)} className={style.timeBtn} />
         </p>
       {formattedTodos.length === 0 ?
-    todoList.map((item) => {
-    return( // mapping default list 
-      <div key={item.id}>
+        todoList.map((item) => {
+          return( 
+        // mapping default list 
+        <div key={item.id}>
         <TodoListItem  
         todo={item} 
         onRemoveTodo={onRemoveTodo}
         />
-      </div>
-    )
-    }) : formattedTodos.map((item) => {
-    return( //mapping sorted list 
-      <div key={item.id}>
+        </div>
+      )
+      }) : formattedTodos.map((item) => {
+      return( 
+        //mapping sorted list 
+        <div key={item.id}>
         <TodoListItem 
         todo={item} 
         onRemoveTodo={onRemoveTodo}
         />
-      </div>
-    )
-    })}
+        </div>
+      )
+      })}
       </ul>
     </>
   )
@@ -131,3 +128,7 @@ imported PropTypes and created an object that has properties that have a key equ
 to the prop or function being test and the value that uses PropTypes to test if output 
 is type that is written (object, string, etc)
 */
+TodoListItem.protoTypes = {
+  todoList: PropTypes.arr,
+  onRemoveTodo: PropTypes.func
+}

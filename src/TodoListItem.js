@@ -16,7 +16,6 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
   <div key={todo.id} className={style.listContainer}>
     <li className={style.listItem}>
       <p className={style.listText}>{todo.title || todo.fields.Name}
-        {/* <FontAwesomeIcon icon={faWindowClose} onClick={strikethrough} /> */}
       </p>
       <FontAwesomeIcon
       icon={faTrash}

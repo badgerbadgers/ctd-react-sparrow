@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import TodoListItem from './TodoListItem'
 import PropTypes from 'prop-types'
 import { FaSort, FaClock } from 'react-icons/fa'
-import style from './TodoListItem.module.css'
+import style from '../components/TodoList.module.css'
 
+/* once add button clicked sort by name ascending, rerender then get data again? or leave it 
+unsorted the sort when either sort time or alpha button is clicked.
+*/
+/* create new state is sorted when add button is clicked from app toggle isSorted to true then sort
+else is sorted is false on render
+*/
 /*
  a functional component that takes in props and maps through that data
  it will then return a div with key and a TodoListItem component that
@@ -12,6 +18,10 @@ import style from './TodoListItem.module.css'
 const TodoList = ({ todoList, onRemoveTodo }) => {
   const [isAscending, setIsAscending] = useState(true)
   const [formattedTodos, setFormattedTodos] = useState([])
+
+  // useEffect(() => {
+
+  // }, [formattedTodos])
 
   /* a compare function */
   function titleSort(a, b) {
@@ -73,18 +83,22 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
   /* maps array and splits at the 'T', returns a new array and object */
    const formattedTodoList = 
       todoList.map((item) => {
-        const currentDate = item.createdTime.split('T')
-        const date = currentDate[0]
-        const time = currentDate[1]
-        const title = item.fields.Name
-        const id = item.id
-        const todo = {
-          title: title,
-          id: id,
-          date: date,
-          time: time
+        if(item.createdTime === undefined) {
+          return
+        } else {
+          const currentDate = item.createdTime.split('T')
+          const date = currentDate[0]
+          const time = currentDate[1]
+          const title = item.fields.Name
+          const id = item.id
+          const todo = {
+            title: title,
+            id: id,
+            date: date,
+            time: time
+          }
+          return todo
         }
-        return todo
       })
 
   return(
@@ -116,6 +130,17 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
         </div>
       )
       })}
+      {/* used to render before sorting functionality is added{todoList.map((item) => {
+          return( 
+        // mapping default list 
+        <div key={item.id}>
+        <TodoListItem  
+        todo={item} 
+        onRemoveTodo={onRemoveTodo}
+        />
+        </div>
+      )
+      })} */}
       </ul>
     </>
   )

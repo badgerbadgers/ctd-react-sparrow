@@ -5,17 +5,21 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import AddTodoForm from './AddTodoForm'
-import TodoList from './TodoList'
+import AddTodoForm from './components/AddTodoForm'
+import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
 
 /* url used for getting data has been appended with view and sort parameters */
-  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
+/* url used for posting data */
+const urlPost = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`
+
 /*
   functional component contains state for API data, 
 */
 const App = () => {
   const [todoList, setTodoList] = useState([])
+  const [updatedTodoList, setUpdatedTodoList] = ([])
   const [isLoading, setIsLoading] = useState(false)
 
   /*
@@ -35,9 +39,31 @@ const App = () => {
   /*
   addTodo function adds newTodo to current todoList and sets that new array as current todoList
   */
-  const addTodo = (newTodo) => {
-   let newTodos = [newTodo, ...todoList]
+  const addTodo = async (title) => {
+    let newTodos = [
+      {
+      id: Date.now(),
+      "fields": {
+        "Name": title
+        }
+      }, ...todoList]
    setTodoList(newTodos)
+    let data = await fetch(urlPost, {
+      method: 'POST',
+      body: JSON.stringify({
+        "records": 
+        [{
+          "fields": {
+            "Name": title
+          }
+        }]
+      }),
+        headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+            'Content-Type': 'application/json',
+          }
+    })
+    console.log('todolist', todoList)
   };
 
   /*
@@ -47,7 +73,7 @@ const App = () => {
     const newTodoList = todoList.filter((todo) => id !== todo.id)
     setTodoList(newTodoList)
   };
-  
+
   return (
     <BrowserRouter>
       <div className={style.container}>

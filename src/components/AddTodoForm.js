@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import style from './AddTodoForm.module.css'
-import InputWithLabel from './InputWithLabel'
+import style from '../components/AddTodoForm.module.css'
+import InputWithLabel from '../components/InputWithLabel'
+import PropTypes from 'prop-types'
 
 const AddTodoForm = ({ onAddTodo }) => {
   /* the initial state of todoTitle and the function that sets its' value */
@@ -10,7 +11,6 @@ const AddTodoForm = ({ onAddTodo }) => {
   a handler function takes in event and event value is new value of input field
   */
   const handleTitleChange = (event) => {
-    console.log('handle change event',event.target.value)
     let newTodoTitle = event.target.value
     setTodoTitle(newTodoTitle)
   };
@@ -19,11 +19,12 @@ const AddTodoForm = ({ onAddTodo }) => {
   a handler function that calls onAddTodo and creates a new object with properties
   */
   const handleAddTodo = (event) => {
-  event.preventDefault();
-  onAddTodo({
-    title: todoTitle,
-    id: Date.now()
-    })
+    event.preventDefault();
+    // onAddTodo({
+    // title: todoTitle,
+    // id: Date.now()
+    // })
+    onAddTodo(todoTitle)
    setTodoTitle('')
   };
  
@@ -35,11 +36,14 @@ const AddTodoForm = ({ onAddTodo }) => {
         <InputWithLabel handleTitleChange={handleTitleChange} todoTitle={todoTitle}>
         {/* Title */}
         </InputWithLabel>
-        <button 
-        className={style.addBtn}>Add</button>
+        <button className={style.addBtn}>Add</button>
      </form>
    </div>
   )
 }
  
 export default AddTodoForm
+
+AddTodoForm.protoTypes = {
+  onAddTodo: PropTypes.func
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './TodoListItem.module.css'
+import style from '../components/TodoListItem.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'

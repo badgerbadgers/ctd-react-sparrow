@@ -14,6 +14,8 @@ import { times } from 'lodash';
 const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
 /* url used for posting data */
 const urlPost = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`
+/* url used for deleting data */
+const urlDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/`
 
 /*
   functional component contains state for API data, 
@@ -152,11 +154,21 @@ const App = () => {
   };
 
   /*
-  remove todo functions takes id and filters out items that are not equal to item id
+  remove todo functions takes id and filters out items that are not equal to item id, sends
+  delete request using fetch to airtable and deletes that record on airtable
   */
   const removeTodo = (id) => {
     const newTodoList = todoList.filter((todo) => id !== todo.id)
     setTodoList(newTodoList)
+    fetch(urlDelete+id, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(res => console.log("DELETE: ", res));
   };
 
   return (

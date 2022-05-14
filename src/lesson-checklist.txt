@@ -49,11 +49,11 @@ TodoContainer.js contains the following:
   [x] Using Fetch API, POST new record to Airtable with the given title field value
   [x] Parse JSON response
   [x] Set todoList state to new Array containing the added record
-  [] (Bonus) Re-sort list data
-[] Function named removeTodo with parameter id that does the following:
-  [] Using Fetch API, DELETE record from Airtable given id
-  [] Parse JSON response
-  [] Set todoList state to new Array NOT containing the removed record
+  [x] (Bonus) Re-sort list data
+[x] Function named removeTodo with parameter id that does the following:
+  [x] Using Fetch API, DELETE record from Airtable given id
+  [x] Parse JSON response
+  [x] Set todoList state to new Array NOT containing the removed record
 [] Return statement that renders the following JSX:
   [] Heading level-one with dynamic tableName
   [] AddTodoForm Component

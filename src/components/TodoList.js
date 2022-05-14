@@ -10,96 +10,96 @@ unsorted the sort when either sort time or alpha button is clicked.
 /* create new state is sorted when add button is clicked from app toggle isSorted to true then sort
 else is sorted is false on render
 */
+// const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
+
 /*
  a functional component that takes in props and maps through that data
  it will then return a div with key and a TodoListItem component that
  passes down props
 */
-const TodoList = ({ todoList, onRemoveTodo }) => {
-  const [isAscending, setIsAscending] = useState(true)
-  const [formattedTodos, setFormattedTodos] = useState([])
+const TodoList = ({ todoList, onRemoveTodo, formattedTodos, isAscending, setFormattedTodos,
+  timeSort, titleSort, handleSort
+}) => {
+  // const [isAscending, setIsAscending] = useState(true)
+  // const [formattedTodos, setFormattedTodos] = useState([])
 
-  // useEffect(() => {
-
-  // }, [formattedTodos])
-
-  /* a compare function */
-  function titleSort(a, b) {
-    /* sort in ascending order */
-    if(!isAscending) {
-      setIsAscending(!isAscending)
-      if(a.title < b.title) {
-        return -1
-      }
-      if(a.title > b.title) {
-        return 1
-      }
-      return 0
-    }
-    /* sort in descending order */
-    if (isAscending) {
-      setIsAscending(!isAscending)
-      if(a.title < b.title) {
-        return 1
-      }
-      if(a.title > b.title) {
-        return -1
-      }
-      return 0
-    }
-  }
+  // /* a compare function */
+  // function titleSort(a, b) {
+  //   /* sort in ascending order */
+  //   if(!isAscending) {
+  //     setIsAscending(!isAscending)
+  //     if(a.title < b.title) {
+  //       return -1
+  //     }
+  //     if(a.title > b.title) {
+  //       return 1
+  //     }
+  //     return 0
+  //   }
+  //   /* sort in descending order */
+  //   if (isAscending) {
+  //     setIsAscending(!isAscending)
+  //     if(a.title < b.title) {
+  //       return 1
+  //     }
+  //     if(a.title > b.title) {
+  //       return -1
+  //     }
+  //     return 0
+  //   }
+  // }
   
-  function timeSort(a, b) {
-    /* sort in ascending order */
-    if(!isAscending) {
-      setIsAscending(!isAscending)
-      if(a.time < b.time) {
-        return -1
-      }
-      if(a.time > b.time) {
-        return 1
-      }
-      return 0
-    }
-    /* sort in descending order */
-    if (isAscending) {
-      setIsAscending(!isAscending)
-      if(a.time < b.time) {
-        return 1
-      }
-      if(a.time > b.time) {
-        return -1
-      }
-      return 0
-    }
-  }
+  // function timeSort(a, b) {
+  //   /* sort in ascending order */
+  //   if(!isAscending) {
+  //     setIsAscending(!isAscending)
+  //     if(a.time < b.time) {
+  //       return -1
+  //     }
+  //     if(a.time > b.time) {
+  //       return 1
+  //     }
+  //     return 0
+  //   }
+  //   /* sort in descending order */
+  //   if (isAscending) {
+  //     setIsAscending(!isAscending)
+  //     if(a.time < b.time) {
+  //       return 1
+  //     }
+  //     if(a.time > b.time) {
+  //       return -1
+  //     }
+  //     return 0
+  //   }
+  // }
 
   /* runs onclick sorts time */
-  const handleSort = (order) => {
-    const updatedTodos = formattedTodoList.sort(timeSort)
-    setFormattedTodos(updatedTodos)
-  }
+  // const handleSort = (order) => {
+  //   const updatedTodos = formattedTodoList.sort(timeSort)
+  //   setFormattedTodos(updatedTodos)
+  // }
 
-  /* maps array and splits at the 'T', returns a new array and object */
-   const formattedTodoList = 
-      todoList.map((item) => {
-        if(item.createdTime === undefined) {
-          return
-        } else {
-          const currentDate = item.createdTime.split('T')
-          const date = currentDate[0]
-          const time = currentDate[1]
-          const title = item.fields.Name
-          const id = item.id
-          const todo = {
-            title: title,
-            id: id,
-            date: date,
-            time: time
-          }
-          return todo
-        }
-      })
+  // /* maps array and splits at the 'T', returns a new array and object */
+  //  const formattedTodoList = 
+  //     todoList.map((item) => {
+  //       if(item.createdTime === undefined) {
+  //         return
+  //       } else {
+  //         const currentDate = item.createdTime.split('T')
+  //         const date = currentDate[0]
+  //         const time = currentDate[1]
+  //         const title = item.fields.Name
+  //         const id = item.id
+  //         const todo = {
+  //           title: title,
+  //           id: id,
+  //           date: date,
+  //           time: time
+  //         }
+  //         return todo
+  //       }
+  //     })
 
   return(
     <>
@@ -130,7 +130,7 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
         </div>
       )
       })}
-      {/* used to render before sorting functionality is added{todoList.map((item) => {
+      {/* {todoList.map((item) => {
           return( 
         // mapping default list 
         <div key={item.id}>

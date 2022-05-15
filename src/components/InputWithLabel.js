@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import style from './AddTodoForm.module.css'
+import PropTypes from 'prop-types'
+
 /*
 a functional reusable component that takes in props, creates some imperative logic with
 the focus attribute in the input field  with useRef and useEffect and returns
@@ -31,3 +33,10 @@ const InputWithLabel = ({ handleTitleChange, todoTitle, children }) => {
 }
 
 export default InputWithLabel
+
+InputWithLabel.protoTypes = {
+  onAddTodo: PropTypes.func,
+  handleTitleChange: PropTypes.func, 
+  todoTitle: PropTypes.string,
+  children: PropTypes.string
+}

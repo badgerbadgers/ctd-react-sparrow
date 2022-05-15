@@ -4,20 +4,12 @@ import PropTypes from 'prop-types'
 import { FaSort, FaClock } from 'react-icons/fa'
 import style from '../components/TodoList.module.css'
 
-/* once add button clicked sort by name ascending, rerender then get data again? or leave it 
-unsorted the sort when either sort time or alpha button is clicked.
-*/
-/* create new state is sorted when add button is clicked from app toggle isSorted to true then sort
-else is sorted is false on render
-*/
-// const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
-
 /*
  a functional component that takes in props and maps through that data
  it will then return a div with key and a TodoListItem component that
  passes down props
 */
-const TodoList = ({ todoList, onRemoveTodo, formattedTodos, isAscending, setFormattedTodos,
+const TodoList = ({ todoList, onRemoveTodo, formattedTodos,
   timeSort, titleSort, handleSort
 }) => {
   // const [isAscending, setIsAscending] = useState(true)
@@ -130,17 +122,6 @@ const TodoList = ({ todoList, onRemoveTodo, formattedTodos, isAscending, setForm
         </div>
       )
       })}
-      {/* {todoList.map((item) => {
-          return( 
-        // mapping default list 
-        <div key={item.id}>
-        <TodoListItem  
-        todo={item} 
-        onRemoveTodo={onRemoveTodo}
-        />
-        </div>
-      )
-      })} */}
       </ul>
     </>
   )

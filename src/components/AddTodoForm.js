@@ -43,6 +43,6 @@ const AddTodoForm = ({ onAddTodo }) => {
  
 export default AddTodoForm
 
-AddTodoForm.protoTypes = {
-  onAddTodo: PropTypes.func
-}
+// AddTodoForm.protoTypes = {
+//   onAddTodo: PropTypes.func
+// }

@@ -8,23 +8,23 @@ import {
 import AddTodoForm from './components/AddTodoForm'
 import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
-import { times } from 'lodash';
 
 /* url used for getting data has been appended with view and sort parameters */
 const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
-/* url used for posting data */
-const urlPost = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`
-/* url used for deleting data */
-const urlDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/`
+/* url used for posting or deleting data */
+const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`
 
 /*
-  functional component contains state for API data, 
+  functional component contains state for API data, routes for components and jsx
 */
 const App = () => {
   const [todoList, setTodoList] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isAscending, setIsAscending] = useState(true)
   const [formattedTodos, setFormattedTodos] = useState([])
+  let tableName = todoList.map((item) => item.fields.tableName)
+
+  // const [tableName, setTableName] = useState([])
 
   /* function for getting data */
   function getData() {
@@ -135,7 +135,7 @@ const App = () => {
         }
       }, ...todoList]
    setTodoList(newTodos)
-    let data = await fetch(urlPost, {
+    let data = await fetch(urlPostDelete, {
       method: 'POST',
       body: JSON.stringify({
         "records": 
@@ -160,7 +160,7 @@ const App = () => {
   const removeTodo = (id) => {
     const newTodoList = todoList.filter((todo) => id !== todo.id)
     setTodoList(newTodoList)
-    fetch(urlDelete+id, {
+    fetch(urlPostDelete+id, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
@@ -168,7 +168,6 @@ const App = () => {
       }
     })
     .then(response => response.json())
-    .then(res => console.log("DELETE: ", res));
   };
 
   return (
@@ -176,15 +175,17 @@ const App = () => {
       <div className={style.container}>
         <div className={style.wrapper}>
           <h2 className={style.appHeader}> 
-          Todo List 
+            {tableName}
           <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" /></h2>
           <AddTodoForm onAddTodo={addTodo} />
           {!isLoading ? <p>is loading...</p> :
           <Routes>
-            <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo} 
+            <Route exact path='/' element={
+            <TodoList todoList={todoList} onRemoveTodo={removeTodo} 
             timeSort={timeSort} handleSort={handleSort} titleSort={titleSort} 
             formattedTodoList={formattedTodoList} setFormattedTodos={setFormattedTodos}
-            formattedTodos={formattedTodos} isAscending={isAscending} />} /> 
+            formattedTodos={formattedTodos} isAscending={isAscending} />
+            } /> 
           </Routes> }
       </div>
     </div>

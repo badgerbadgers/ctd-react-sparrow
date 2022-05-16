@@ -20,11 +20,8 @@ const AddTodoForm = ({ onAddTodo }) => {
   */
   const handleAddTodo = (event) => {
     event.preventDefault();
-    // onAddTodo({
-    // title: todoTitle,
-    // })
     onAddTodo(todoTitle)
-   setTodoTitle('')
+    setTodoTitle('')
   };
  
   /* returns a form with a label element, component and button */
@@ -33,7 +30,7 @@ const AddTodoForm = ({ onAddTodo }) => {
      <form onSubmit={handleAddTodo} className={style.todoForm}>
         <label htmlFor="todoTitle" />
         <InputWithLabel handleTitleChange={handleTitleChange} todoTitle={todoTitle}>
-        {/* Title */}
+        <span className='formChildrenText'>Title</span>
         </InputWithLabel>
         <button className={style.addBtn}>Add</button>
      </form>
@@ -43,6 +40,6 @@ const AddTodoForm = ({ onAddTodo }) => {
  
 export default AddTodoForm
 
-// AddTodoForm.protoTypes = {
-//   onAddTodo: PropTypes.func
-// }
+AddTodoForm.protoTypes = {
+  onAddTodo: PropTypes.func
+}

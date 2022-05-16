@@ -9,12 +9,13 @@ import AddTodoForm from './components/AddTodoForm'
 import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
 
+const tableName = 'List'
 /* url used for getting data has been appended with view and sort parameters */
 // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
-const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view`
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view`
 
 /* url used for posting or deleting data */
-const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/`
+const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}/`
 
 /*
   functional component contains state for API data, routes for components and jsx
@@ -41,7 +42,7 @@ const App = () => {
   */
   useEffect(() => {
     getData()
-  }, [])
+  }, [todoList])
 
   /* a compare function */
   function titleSort(a, b) {
@@ -104,7 +105,7 @@ const App = () => {
    const formattedTodoList = 
       todoList.map((item) => {
         if(item.createdTime === undefined) {
-          return
+          return null
         } else {
           const currentDate = item.createdTime.split('T')
           const date = currentDate[0]
@@ -126,15 +127,15 @@ const App = () => {
   adding a new todo will call new API call
   */
   const addTodo = async (title) => {
-    let newTodos = [
+    let newTodo = [
       {
       id: Date.now(),
       "fields": {
         "Name": title
         }
       }, ...todoList]
-   setTodoList(newTodos)
-    let data = await fetch(urlPostDelete, {
+    setFormattedTodos(newTodo);
+    await fetch(urlPostDelete, {
       method: 'POST',
       body: JSON.stringify({
         "records": 
@@ -156,10 +157,9 @@ const App = () => {
   remove todo functions takes id and filters out items that are not equal to item id, sends
   delete request using fetch to airtable and deletes that record on airtable
   */
-  const removeTodo = (id) => {
-    const newTodoList = todoList.filter((todo) => id !== todo.id)
-    setTodoList(newTodoList)
-    fetch(urlPostDelete+id, {
+  const removeTodo = async (id) => {
+  
+    await fetch(urlPostDelete+id, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
@@ -167,7 +167,11 @@ const App = () => {
       }
     })
     .then(response => response.json())
-    .then(res => console.log("DELETE: ", res));
+    .then(res => console.log("DELETE: ", res))
+
+    const newTodoList = todoList.filter((todo) => id !== todo.id)
+    setFormattedTodos(newTodoList)
+    getData()
   };
 
   return (
@@ -175,18 +179,21 @@ const App = () => {
       <div className={style.container}>
         <div className={style.wrapper}>
           <h2 className={style.appHeader}> 
-            TodoList
-          <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" /></h2>
+            {tableName}
+          <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" 
+          style={{paddingLeft: '10px'}}
+          /></h2>
           <AddTodoForm onAddTodo={addTodo} />
           {!isLoading ? <p>is loading...</p> :
           <Routes>
             <Route exact path='/' element={
             <TodoList todoList={todoList} onRemoveTodo={removeTodo} 
-            timeSort={timeSort} handleSort={handleSort} titleSort={titleSort} 
-            formattedTodoList={formattedTodoList} setFormattedTodos={setFormattedTodos}
-            formattedTodos={formattedTodos} isAscending={isAscending} />
+              timeSort={timeSort} handleSort={handleSort} titleSort={titleSort} 
+              formattedTodoList={formattedTodoList} setFormattedTodos={setFormattedTodos}
+              formattedTodos={formattedTodos} isAscending={isAscending} />
             } /> 
-          </Routes> }
+          </Routes> 
+          }
       </div>
     </div>
     </BrowserRouter>

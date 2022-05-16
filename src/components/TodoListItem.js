@@ -18,11 +18,11 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
       <p className={style.listText}>{todo.title || todo.fields.Name}
       </p>
       <FontAwesomeIcon
-      icon={faTrash}
-      className={style.todoItemBtn}
-      type='button' 
-      onClick={handleRemoveItem}>Remove
-    </FontAwesomeIcon>
+        icon={faTrash}
+        className={style.todoItemBtn}
+        type='button' 
+        onClick={handleRemoveItem}>Remove
+      </FontAwesomeIcon>
     </li>
   </div>
   )

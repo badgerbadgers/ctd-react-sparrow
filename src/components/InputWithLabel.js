@@ -35,7 +35,6 @@ const InputWithLabel = ({ handleTitleChange, todoTitle, children }) => {
 export default InputWithLabel
 
 InputWithLabel.protoTypes = {
-  onAddTodo: PropTypes.func,
   handleTitleChange: PropTypes.func, 
   todoTitle: PropTypes.string,
   children: PropTypes.string

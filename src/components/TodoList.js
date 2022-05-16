@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import TodoListItem from './TodoListItem'
 import PropTypes from 'prop-types'
 import { FaSort, FaClock } from 'react-icons/fa'
@@ -9,7 +9,7 @@ import style from '../components/TodoList.module.css'
  it will then return a div with key and a TodoListItem component that
  passes down props
 */
-const TodoList = ({ todoList, onRemoveTodo, formattedTodos,timeSort, titleSort, handleSort}) => {
+const TodoList = ({ todoList, onRemoveTodo, formattedTodos, timeSort, titleSort, handleSort }) => {
   return(
     <>
       <ul>
@@ -47,5 +47,9 @@ is type that is written (object, string, etc)
 */
 TodoListItem.protoTypes = {
   todoList: PropTypes.arr,
-  onRemoveTodo: PropTypes.func
+  onRemoveTodo: PropTypes.func,
+  formattedTodos: PropTypes.arr, 
+  timeSort: PropTypes.func, 
+  titleSort: PropTypes.func, 
+  handleSort: PropTypes.func
 }

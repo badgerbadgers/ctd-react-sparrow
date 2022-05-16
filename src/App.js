@@ -10,7 +10,9 @@ import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
 
 /* url used for getting data has been appended with view and sort parameters */
-const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
+// const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view`
+
 /* url used for posting or deleting data */
 const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/`
 
@@ -22,9 +24,6 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isAscending, setIsAscending] = useState(true)
   const [formattedTodos, setFormattedTodos] = useState([])
-  let tableName = todoList.map((item) => item.fields.tableName)
-
-  // const [tableName, setTableName] = useState([])
 
   /* function for getting data */
   function getData() {
@@ -96,8 +95,8 @@ const App = () => {
   }
 
   /* runs onclick sorts time */
-  const handleSort = (order) => {
-    const updatedTodos = formattedTodoList.sort(timeSort)
+  const handleSort = (sortMethod) => {
+    const updatedTodos = formattedTodoList.sort(sortMethod)
     setFormattedTodos(updatedTodos)
   }
 
@@ -176,7 +175,7 @@ const App = () => {
       <div className={style.container}>
         <div className={style.wrapper}>
           <h2 className={style.appHeader}> 
-            {tableName}
+            TodoList
           <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" /></h2>
           <AddTodoForm onAddTodo={addTodo} />
           {!isLoading ? <p>is loading...</p> :

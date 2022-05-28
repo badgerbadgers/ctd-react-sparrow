@@ -9,13 +9,13 @@ import AddTodoForm from './components/AddTodoForm'
 import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
 
-const tableName = 'Todo List'
+const TABLENAME = 'Todo List'
 /* url used for getting data has been appended with view and sort parameters */
 // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
-const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`
+const URL = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${TABLENAME}`
 
 /* url used for posting or deleting data */
-const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`
+const URLPOSTDELETE= `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${TABLENAME}`
 
 /*
   functional component contains state for API data, routes for components and jsx
@@ -28,7 +28,7 @@ const App = () => {
 
   /* function for getting data */
   function getData() {
-    fetch(url, {
+    fetch(URL, {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
       }
@@ -135,7 +135,7 @@ const App = () => {
         }
       }, ...todoList]
     setTodoList(newTodo);
-    await fetch(urlPostDelete, {
+    await fetch(URLPOSTDELETE, {
       method: 'POST',
       body: JSON.stringify({
         "records": 
@@ -159,7 +159,7 @@ const App = () => {
   */
   const removeTodo = async (id) => {
   
-    await fetch(urlPostDelete+id, {
+    await fetch(URLPOSTDELETE+id, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
@@ -178,7 +178,7 @@ const App = () => {
       <div className={style.container}>
         <div className={style.wrapper}>
           <h2 className={style.appHeader}> 
-            {tableName}
+            {TABLENAME}
           <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" 
           style={{paddingLeft: '10px'}}
           /></h2>

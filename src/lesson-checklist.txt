@@ -123,3 +123,4 @@ Use of third-party CSS libraries is discouraged for this project, we want to see
 //Tim's stretch goals
 [] follow BEM
 [] create a loading skeleton instead of simple loading text
+[] follow ADA guide for compliance

@@ -9,7 +9,7 @@ import AddTodoForm from './components/AddTodoForm'
 import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
 
-const tableName = 'List'
+const tableName = 'Todo List'
 /* url used for getting data has been appended with view and sort parameters */
 // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
 const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view`
@@ -134,7 +134,7 @@ const App = () => {
         "Name": title
         }
       }, ...todoList]
-    setFormattedTodos(newTodo);
+    setTodoList(newTodo);
     await fetch(urlPostDelete, {
       method: 'POST',
       body: JSON.stringify({
@@ -167,11 +167,10 @@ const App = () => {
       }
     })
     .then(response => response.json())
-    .then(res => console.log("DELETE: ", res))
 
     const newTodoList = todoList.filter((todo) => id !== todo.id)
-    setFormattedTodos(newTodoList)
-    getData()
+    setTodoList(newTodoList)
+    // getData()
   };
 
   return (

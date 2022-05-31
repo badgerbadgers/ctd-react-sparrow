@@ -12,10 +12,10 @@ import { ReactComponent as Check } from './img/edit-list.svg'
 const tableName = 'Todo List'
 /* url used for getting data has been appended with view and sort parameters */
 // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
-const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/tableName?`
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view`
 
 /* url used for posting or deleting data */
-const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/tableName/`
+const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}/`
 
 /*
   functional component contains state for API data, routes for components and jsx

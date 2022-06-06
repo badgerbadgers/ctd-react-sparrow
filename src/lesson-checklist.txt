@@ -1,57 +1,126 @@
-//Instructions lesson 3-1
-So far you've built a functional todo list, but now it's time to add some style!
+//Grading Rubric
+//General
+[] Project is published on public GitHub repository
+[x] Project includes "create-react-app" boilerplate structure
+[] Project includes necessary dependencies:
+  [x] "react-router-dom"
+  [] "prop-types"
+[] Code compiles without errors
+[] Code executes without run-time errors in the browser
+[] (Bonus) Code compiles and runs without warnings
 
-There are multiple ways to work with CSS in React applications:
+//Project Structure
+Repository includes src/ directory with the following structure:
+[x] index.js(application entry-point)
+[x] App.js (root component)
+[x] components/ directory with the following files:
+  [x] AddTodoForm.js
+  [x] InputWithLabel.js
+  [x] TodoList.js
+  [x] TodoListItem.js
+  [] (Bonus) TodoContainer.js
+  [x] One or more CSS modules associated with the components above
 
-Inline CSS
-CSS
-CSS-in-JS
-In this lesson, we would like for you to use CSS modules. Let's walk through an example:
+//App Component
+App.js contains the following:
+[x] Functional React component named App
+[x] Return statement that renders the following JSX:
+  [x] Router from "react-router-dom"
+  [] Switch component with two or more Routes that are navigable
+  [x] One route for "home" or "landing" page
+  [x] One or more routes which render a TodoList component
+[] (Bonus) Navigation menu
 
-[x] Open src/
-[x] Create a CSS module file called TodoListItem.module.css
-[x] Add a ruleset for class ListItem that changes the text color
-[x] Open src/TodoListItem.js
-[x] Import the default module (as style) from TodoListItem.module.css
-[x] Add a className to the <li> element and set the value as the class from CSS module ({style.ListItem})
-  [x] note: the style object represents all the class names in your CSS module file, so you access them like normal object properties (dot or bracket notation)
+//TodoContainer Component
+If project is missing (Bonus) TodoContainer.js, then apply these requirements to App.js instead
 
-//Rubric
-For this assignment, there are some general requirements but the design is up to you. This is your chance to be creative and personalize your todo list application.
+TodoContainer.js contains the following:
+[] Functional React component named TodoContainer with one prop: tableName
+[x] Correct propTypes for the prop(s) listed
+[x] State variable named todoList with default value of an empty Array ([])
+[x] State variable named isLoading with default value of true
+[] useEffect hook with dependency tableName (prop) and callback function that does the following:
+  [x] Using Fetch API, GET table records from Airtable for the given tableName
+  [x] Parse JSON response
+  [x] Sort response data by one or more properties
+  [x] Set todoList state to sorted data
+  [x] Set isLoading to false
+[x] Function named addTodo with parameter title that does the following:
+  [x] Using Fetch API, POST new record to Airtable with the given title field value
+  [x] Parse JSON response
+  [x] Set todoList state to new Array containing the added record
+  [x] (Bonus) Re-sort list data
+[x] Function named removeTodo with parameter id that does the following:
+  [x] Using Fetch API, DELETE record from Airtable given id
+  [x] Parse JSON response
+  [x] Set todoList state to new Array NOT containing the removed record
+[x] Return statement that renders the following JSX:
+  [x] Heading level-one with dynamic tableName
+  [x] AddTodoForm Component
+  [x] Conditional rendering based on isLoading state:
+    [x] If true, paragraph that reads "Loading..." or some equivalent message
+    [x] If false, TodoList Component
 
-[x] Change the background color of the page body
-[x] Change the default text color
-[x] Customize the font family
-  [x] (Optional) Load in a font family from Google Fonts
-[x] Customize style of navigation items
-[x] Add spacing (padding/margin) between elements
-[x] Change the font size, weight, and color of all headings
-[x] Customize input and button styles
-[x] Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
-[x] (Optional) Add multi-media usage (i.e. iconography)
+//AddTodoForm Component
+AddTodoForm.js contains the following:
+[x] Functional React component named AddTodoForm with one prop: onAddTodo
+[x] Correct propTypes for the prop(s) listed
+[x] State variable named todoTitle with default value of an empty String ("")
+[x] Function named handleTitleChange with parameter event that does the following:
+  [x] Set todoTitle to given value from event
+[x] Function named handleAddTodo with parameter event that does the following:
+  [x] Prevent default event behavior (i.e. page refresh)
+  [x] Invoke callback prop onAddTodo and pass todoTitle from state
+  [x] Reset todoTitle value to an empty String ("")
+[x] Return statement that renders the following JSX:
+  [x] Form element with submit event handler
+  [x] InputWithLabel Component
+  [x] Button element with type "submit"
 
-  // Optional Tim Stretch Goals!
-  [x] add validation check when submitting form (adding required works as form of validation for input field)
-  [x] used flexbox on App, AddTodoForm and TodoListItem components
-  [x] consistent padding on todoForm across all viewports
-  [x] spacing between text is event across all viewports
-  [x] when text is longer than div there will be a scroll to accomodate the text
-  [x] used font awesome library to add trash icon for todoItem being rendered
-  [x] added custom background image on top of new background color
-    [x] added img folder in src with new background image
-  [x] imported SVG component to use as an image in App component
-    [x] at smallest viewport the svg shrinks to 20px width and height
-  [x] styled App Component
-    [x] for smallest viewport (mobile 480px) changed to smaller
-      font sizes for header and p text
-    [x] gave media queries for specific breakpoints for tablet, computer screen, tablet and mobile viewports
-    [x] gave global styling to fonts, headers gave padding to container and wrapper divs. removed global padding and margin using * selector, alots of other css styles
-  [x] styled AddTodoForm Component
-    [x] gave media queries for specific breakpoints for tablet, computer screen, tablet and mobile viewports
-    [x] styled form, button and input with padding, margin, other css properties
-  [x] style TodoListItem Component
-    [x] styled p text color added font awesome icon for trash to replace delete button, padding, margin and other css styling added
-  [x] changed from function components to concise body:
-    export const App = () => {...}
+//InputWithLabel Component
+InputWithLabel.js contains the following:
+[x] Functional React component named InputWithLabel with three props: todoTitle, handleTitleChange, and children
+[x] Correct propTypes for the prop(s) listed
+[x] Ref for Input element
+[x] useEffect hook with empty dependency list and callback function that does the following:
+  [x] Focus input ref
+[x] Return statement that renders the following JSX:
+  [x] Label element which renders text from children prop
+  [x] Input element which is configured as a "controlled component" with "value" and "onChange" attributes
 
-This is the basic rubric, but we encourage you to think beyond this list and come up with your own ideas to make your application unique!
+//TodoList Component
+TodoList.js contains the following:
+[x] Functional React component named TodoList with two props: todoList and onRemoveTodo
+[x] Correct propTypes for the prop(s) listed
+[x] Return statement that renders the following JSX:
+  [x] Unordered list element
+  [x] map statement which loops through todoList Array and returns TodoListItem Component
+
+//TodoListItem Component
+TodoListItem.js contains the following:
+[x] Functional React component named TodoListItem with two props: todo and onRemoveTodo
+[x] Correct propTypes for the prop(s) listed
+[x] Return statement that renders the following JSX:
+  [x] List-item element
+  [x] Title from todo Object
+  [x] Button element with text "Remove" and "onClick" event handler
+
+//Styling
+Use of third-party CSS libraries is discouraged for this project, we want to see your understanding of basic CSS concepts like rulesets, properties, and media queries
+[x] Project includes at least one CSS module (though, it is encouraged that you have a different module for each React component)
+[x] Application follows the style requirements outlines below:
+  [x] Change the background color of the page body
+  [x] Change the default text color
+  [x] Customize the font family
+  [x] (Bonus) Load in a font family from Google Fonts
+  [x] (Bonus) Customize style of navigation items
+  [x] Add spacing (padding/margin) between elements
+  [x] Change the font size, weight, and color of all headings
+  [x] Customize input and button styles
+  [x] Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
+  [x] (Bonus) Add multi-media usage (i.e. iconography)
+
+//Tim's stretch goals
+[] follow BEM
+[] create a loading skeleton instead of simple loading text
+[] follow ADA guide for compliance

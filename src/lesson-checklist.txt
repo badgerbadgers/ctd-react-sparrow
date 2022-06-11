@@ -1,13 +1,13 @@
 //Grading Rubric
 //General
-[] Project is published on public GitHub repository
+[x] Project is published on public GitHub repository
 [x] Project includes "create-react-app" boilerplate structure
-[] Project includes necessary dependencies:
+[x] Project includes necessary dependencies:
   [x] "react-router-dom"
-  [] "prop-types"
-[] Code compiles without errors
-[] Code executes without run-time errors in the browser
-[] (Bonus) Code compiles and runs without warnings
+  [x] "prop-types"
+[x] Code compiles without errors
+[x] Code executes without run-time errors in the browser
+[x] (Bonus) Code compiles and runs without warnings
 
 //Project Structure
 Repository includes src/ directory with the following structure:
@@ -26,7 +26,7 @@ App.js contains the following:
 [x] Functional React component named App
 [x] Return statement that renders the following JSX:
   [x] Router from "react-router-dom"
-  [] Switch component with two or more Routes that are navigable
+  [x] Switch component with two or more Routes that are navigable
   [x] One route for "home" or "landing" page
   [x] One or more routes which render a TodoList component
 [] (Bonus) Navigation menu
@@ -121,6 +121,5 @@ Use of third-party CSS libraries is discouraged for this project, we want to see
   [x] (Bonus) Add multi-media usage (i.e. iconography)
 
 //Tim's stretch goals
-[] follow BEM
 [] create a loading skeleton instead of simple loading text
 [] follow ADA guide for compliance

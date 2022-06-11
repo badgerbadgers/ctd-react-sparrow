@@ -37,5 +37,6 @@ is type that is written (object, string, etc)
 */
 TodoListItem.protoTypes = {
   todo: PropTypes.object,
-  onRemoveTodo: PropTypes.func
+  onRemoveTodo: PropTypes.func,
+  handleRemoveItem: PropTypes.func
 }

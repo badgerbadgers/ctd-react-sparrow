@@ -5,11 +5,14 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import PropTypes from 'prop-types'
 import AddTodoForm from './components/AddTodoForm'
 import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
 
+/* dynamic airtable table name */
 const tableName = `Todo-List`
+
 /* url used for getting data has been appended with view and sort parameters */
 // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
 const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view`
@@ -166,7 +169,6 @@ const App = () => {
       }
     })
     .then(response => response.json())
-
     const newTodoList = todoList.filter((todo) => id !== todo.id)
     setTodoList(newTodoList)
     // getData()
@@ -181,15 +183,28 @@ const App = () => {
           <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" 
           style={{paddingLeft: '10px'}}
           /></h2>
-          <AddTodoForm onAddTodo={addTodo} />
           {!isLoading ? <p>is loading...</p> :
           <Routes>
-            <Route exact path='/' element={
-            <TodoList todoList={todoList} onRemoveTodo={removeTodo} 
-              timeSort={timeSort} handleSort={handleSort} titleSort={titleSort} 
-              formattedTodoList={formattedTodoList} setFormattedTodos={setFormattedTodos}
-              formattedTodos={formattedTodos} isAscending={isAscending} />
-            } /> 
+            <Route path='/' element={
+              <> 
+                <AddTodoForm onAddTodo={addTodo} />
+                <TodoList 
+                  todoList={todoList} onRemoveTodo={removeTodo} timeSort={timeSort} 
+                  handleSort={handleSort} titleSort={titleSort} formattedTodoList={formattedTodoList} 
+                  setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} 
+                  isAscending={isAscending} 
+                />
+              </> 
+            } />
+            <Route path='/form' element={ <AddTodoForm onAddTodo={addTodo} /> } />
+            <Route path='/todolist' element={
+              <TodoList 
+                todoList={todoList} onRemoveTodo={removeTodo} timeSort={timeSort} 
+                handleSort={handleSort} titleSort={titleSort} formattedTodoList={formattedTodoList} 
+                setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} 
+                isAscending={isAscending} 
+              />
+            } />
           </Routes> 
           }
       </div>
@@ -199,3 +214,21 @@ const App = () => {
 }
  
 export default App
+
+App.protoTypes = {
+  tableName: PropTypes.string,
+  url: PropTypes.string,
+  urlPostDelete: PropTypes.string,
+  getData: PropTypes.func,
+  todoList: PropTypes.array,
+  isLoading: PropTypes.bool,
+  isAscending: PropTypes.bool,
+  formattedTodos: PropTypes.array,
+  titleSort: PropTypes.func,
+  timeSort: PropTypes.func,
+  handleSort: PropTypes.func,
+  formattedTodoList: PropTypes.func,
+  addTodo: PropTypes.func,
+  removeTodo: PropTypes.func
+  
+}

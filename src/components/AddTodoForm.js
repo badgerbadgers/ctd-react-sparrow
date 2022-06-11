@@ -41,5 +41,7 @@ const AddTodoForm = ({ onAddTodo }) => {
 export default AddTodoForm
 
 AddTodoForm.protoTypes = {
-  onAddTodo: PropTypes.func
+  onAddTodo: PropTypes.func,
+  handleTitleChange: PropTypes.func,
+  handleAddTodo: PropTypes.func
 }

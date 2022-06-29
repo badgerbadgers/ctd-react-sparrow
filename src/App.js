@@ -15,7 +15,7 @@ const tableName = `Todo-List`
 
 /* url used for getting data has been appended with view and sort parameters */
 // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
-const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view`
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?`
 
 /* url used for posting or deleting data */
 const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}/`
@@ -26,7 +26,7 @@ const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTA
 const App = () => {
   const [todoList, setTodoList] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const [isAscending, setIsAscending] = useState(true)
+  const [isAscending, setIsAscending] = useState(false)
   const [formattedTodos, setFormattedTodos] = useState([])
 
   /* function for getting data */
@@ -52,10 +52,10 @@ const App = () => {
     /* sort in ascending order */
     if(!isAscending) {
       setIsAscending(!isAscending)
-      if(a.title < b.title) {
+      if(a.title.toLowerCase() < b.title.toLowerCase()) {
         return -1
       }
-      if(a.title > b.title) {
+      if(a.title.toLowerCase() > b.title.toLowerCase()) {
         return 1
       }
       return 0
@@ -63,10 +63,10 @@ const App = () => {
     /* sort in descending order */
     if (isAscending) {
       setIsAscending(!isAscending)
-      if(a.title < b.title) {
+      if(a.title.toLowerCase() < b.title.toLowerCase()) {
         return 1
       }
-      if(a.title > b.title) {
+      if(a.title.toLowerCase() > b.title.toLowerCase()) {
         return -1
       }
       return 0
@@ -100,7 +100,9 @@ const App = () => {
 
   /* runs onclick sorts time */
   const handleSort = (sortMethod) => {
-    const updatedTodos = formattedTodoList.sort(sortMethod)
+    let updatedTodos = formattedTodoList.sort(sortMethod)
+    // setTodoList(updatedTodos)
+    // console.log('updated with set todo func',todoList)
     setFormattedTodos(updatedTodos)
   }
 
@@ -124,20 +126,11 @@ const App = () => {
           return todo
         }
       })
-
   /*
   addTodo function adds newTodo to current todoList and sets that new array as current todoList
   adding a new todo will call new API call
   */
   const addTodo = async (title) => {
-    let newTodo = [
-      {
-      id: Date.now(),
-      "fields": {
-        "Name": title
-        }
-      }, ...todoList]
-    setTodoList(newTodo);
     await fetch(urlPostDelete, {
       method: 'POST',
       body: JSON.stringify({
@@ -153,7 +146,16 @@ const App = () => {
             'Content-Type': 'application/json',
           }
     })
-    getData()
+    .then(res => res.json())
+    let newTodo = [
+      {
+      id: Date.now(),
+      "fields": {
+        "Name": title
+        }
+      }, ...todoList]
+      setTodoList(newTodo)
+      setFormattedTodos([])
   };
 
   /*
@@ -169,11 +171,39 @@ const App = () => {
       }
     })
     .then(response => response.json())
-    const newTodoList = todoList.filter((todo) => id !== todo.id)
-    setTodoList(newTodoList)
+    // let newTodoList = todoList.filter((todo) => id !== todo.id)
+    // setTodoList(newTodoList)
     // getData()
+    let newTodos = todoList.filter((todo) => id !== todo.id)
+    setTodoList(newTodos)
+    setFormattedTodos([])
   };
 
+  const editTodo = async (editedText, id) => {
+    await fetch(url+id, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "records": 
+        [{
+          "id": id,
+          "fields": {
+            "Name": editedText
+          }
+        }]
+      })
+    })
+    setTodoList(todoList)
+    setFormattedTodos([])
+  }
+  
+  /* the return statement uses BrowserRouter to route the AddTodoForm and TodoList with the default '/' url
+    navigating to the url 'form' points the user to the AddTodoForm component and the 'todolist' points the user to the
+    TodoList component
+  */
   return (
     <BrowserRouter>
       <div className={style.container}>
@@ -191,8 +221,8 @@ const App = () => {
                 <TodoList 
                   todoList={todoList} onRemoveTodo={removeTodo} timeSort={timeSort} 
                   handleSort={handleSort} titleSort={titleSort} formattedTodoList={formattedTodoList} 
-                  setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} 
-                  isAscending={isAscending} 
+                  setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} editTodo={editTodo}
+                  isAscending={isAscending} addTodo={addTodo} setTodoList={setTodoList}
                 />
               </> 
             } />
@@ -202,7 +232,7 @@ const App = () => {
                 todoList={todoList} onRemoveTodo={removeTodo} timeSort={timeSort} 
                 handleSort={handleSort} titleSort={titleSort} formattedTodoList={formattedTodoList} 
                 setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} 
-                isAscending={isAscending} 
+                isAscending={isAscending} editTodo={editTodo} addTodo={addTodo} setTodoList={setTodoList} 
               />
             } />
           </Routes> 
@@ -229,6 +259,6 @@ App.protoTypes = {
   handleSort: PropTypes.func,
   formattedTodoList: PropTypes.func,
   addTodo: PropTypes.func,
-  removeTodo: PropTypes.func
-  
+  removeTodo: PropTypes.func,
+  editTodo: PropTypes.func
 }

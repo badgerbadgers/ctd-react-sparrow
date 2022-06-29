@@ -9,7 +9,7 @@ import style from '../components/TodoList.module.css'
  it will then return a div with key and a TodoListItem component that
  passes down props
 */
-const TodoList = ({ todoList, onRemoveTodo, formattedTodos, timeSort, titleSort, handleSort }) => {
+const TodoList = ({ todoList, setTodoList, onRemoveTodo, formattedTodos, timeSort, titleSort, handleSort, editTodo, addTodo, inputTitle, setInputTitle, setFormattedTodos, getData }) => {
   return(
     <>
       <ul>
@@ -17,19 +17,21 @@ const TodoList = ({ todoList, onRemoveTodo, formattedTodos, timeSort, titleSort,
           <FaSort onClick={() => handleSort(titleSort)} className={style.sortBtn} />
           <FaClock onClick={() => handleSort(timeSort)} className={style.timeBtn} />
         </p>
-        {formattedTodos.length === 0 ?
+        {formattedTodos.length === todoList ?
           todoList.map((item) => {
             return( 
               // mapping default list 
               <div key={item.id}>
-                <TodoListItem todo={item} onRemoveTodo={onRemoveTodo} />
+                <TodoListItem todo={item} onRemoveTodo={onRemoveTodo} editTodo={editTodo} addTodo={addTodo} todoList={todoList} formattedTodos={formattedTodos} setFormattedTodos={setFormattedTodos} setTodoList={setTodoList} 
+                />
               </div>
             )
           }) : formattedTodos.map((item) => {
             return( 
               //mapping sorted list 
               <div key={item.id}>
-                <TodoListItem todo={item} onRemoveTodo={onRemoveTodo} />
+                <TodoListItem todo={item} onRemoveTodo={onRemoveTodo} editTodo={editTodo} addTodo={addTodo} todoList={todoList} formattedTodos={formattedTodos} setFormattedTodos={setFormattedTodos} setfTodoList={setTodoList} 
+                />
               </div>
             )
           })}
@@ -51,5 +53,6 @@ TodoListItem.protoTypes = {
   formattedTodos: PropTypes.arr, 
   timeSort: PropTypes.func, 
   titleSort: PropTypes.func, 
-  handleSort: PropTypes.func
+  handleSort: PropTypes.func,
+  editTodo: PropTypes.func
 }

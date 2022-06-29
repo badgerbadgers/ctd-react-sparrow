@@ -30,7 +30,6 @@ const AddTodoForm = ({ onAddTodo }) => {
      <form onSubmit={handleAddTodo} className={style.todoForm}>
         <label htmlFor="todoTitle" />
         <InputWithLabel handleTitleChange={handleTitleChange} todoTitle={todoTitle}>
-        <span className='formChildrenText'>Title</span>
         </InputWithLabel>
         <button className={style.addBtn}>Add</button>
      </form>

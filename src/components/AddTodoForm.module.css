@@ -15,13 +15,6 @@
   width: 60%;
   margin-bottom: 4px;
 }
-/* span 'children' text */
-span {
-  font-size: 1.25rem;
-  font-weight: bold;
-  padding: 0px 10px 2px 2px;
-  color:#40414a;
-}
 /* form button */
 .addBtn {
   background: #6370ab;

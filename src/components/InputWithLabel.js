@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import style from './AddTodoForm.module.css'
 import PropTypes from 'prop-types'
 
@@ -8,11 +8,11 @@ the focus attribute in the input field  with useRef and useEffect and returns
 an input field with attributes and a button labeled add
 */
 const InputWithLabel = ({ handleTitleChange, todoTitle, children }) => {
-   const inputRef = useRef();
+  //  const inputRef = useRef();
 
-   useEffect(() => {
-    inputRef.current.focus();
-   });
+  //  useEffect(() => {
+  //   inputRef.current.focus();
+  //  });
 
   return (
     <>
@@ -21,7 +21,7 @@ const InputWithLabel = ({ handleTitleChange, todoTitle, children }) => {
           className={style.todoInput}
           placeholder='enter a todo'
           required
-          ref={inputRef}
+          // ref={inputRef}
           id="todoTitle"
           type="text"
           value={todoTitle}

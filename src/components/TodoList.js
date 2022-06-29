@@ -17,7 +17,7 @@ const TodoList = ({ todoList, setTodoList, onRemoveTodo, formattedTodos, timeSor
           <FaSort onClick={() => handleSort(titleSort)} className={style.sortBtn} />
           <FaClock onClick={() => handleSort(timeSort)} className={style.timeBtn} />
         </p>
-        {formattedTodos.length === todoList ?
+        {formattedTodos.length === 0 ?
           todoList.map((item) => {
             return( 
               // mapping default list 

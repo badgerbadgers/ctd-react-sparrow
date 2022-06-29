@@ -35,3 +35,11 @@
 .listText {
   overflow: auto;
 }
+/* li checkbox */
+.listItemCheckbox {
+  margin-right: 10px;
+}
+.listItemCheckbox:checked {
+  background: #fff;
+  margin-right: 10px;
+}

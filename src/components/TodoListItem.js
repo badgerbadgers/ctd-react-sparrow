@@ -11,7 +11,7 @@ const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList, setFormattedTodo
   const [onEdit, setOnEdit] = useState(false)
     /* the initial state of todoTitle and the function that sets its' value */
   const [inputTitle, setInputTitle] = useState('')
-  // const [isCompleted, setIsCompleted] = useState(false)
+  const [isCompleted, setIsCompleted] = useState(false)
 
   const handleRemoveItem = () => {
     onRemoveTodo(todo.id);
@@ -45,13 +45,17 @@ const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList, setFormattedTodo
     }
   }
 
-  // const handleCompleteItem = () => {
-  //   setIsCompleted(!isCompleted)
-  // }
+  const handleCompleteItem = () => {
+    setIsCompleted(!isCompleted)
+  }
 
   return (
   <div key={todo.id} className={style.listContainer}>
     <li className={style.listItem}>
+      <input type="checkbox" 
+        className={style.listItemCheckbox}
+        onClick={handleCompleteItem} 
+      />
       {onEdit ?
       <input type="text" 
         className={style.editInputField}
@@ -60,7 +64,9 @@ const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList, setFormattedTodo
         // onKeyDown={handleKeyDown}
         value={inputTitle}
       />
-       : <p className={style.listText}> {todo.title || todo.fields.Name}
+       : <p className={style.listText}
+           style={{ textDecoration: isCompleted ? 'line-through' : 'none'}}
+         > {todo.title || todo.fields.Name}
       </p>
       }
       <FontAwesomeIcon

@@ -28,6 +28,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isAscending, setIsAscending] = useState(false)
   const [formattedTodos, setFormattedTodos] = useState([])
+  const [todoCount, setTodoCount] = useState(0)
 
   /* function for getting data */
   function getData() {
@@ -45,6 +46,7 @@ const App = () => {
   */
   useEffect(() => {
     getData()
+    setTodoCount(todoList.length)
   }, [todoList])
 
   /* a compare function */
@@ -156,6 +158,7 @@ const App = () => {
       }, ...todoList]
       setTodoList(newTodo)
       setFormattedTodos([])
+      setTodoCount(todoCount + 1)
   };
 
   /*
@@ -177,6 +180,7 @@ const App = () => {
     let newTodos = todoList.filter((todo) => id !== todo.id)
     setTodoList(newTodos)
     setFormattedTodos([])
+    setTodoCount(todoCount - 1)
   };
 
   const editTodo = async (editedText, id) => {
@@ -222,7 +226,7 @@ const App = () => {
                   todoList={todoList} onRemoveTodo={removeTodo} timeSort={timeSort} 
                   handleSort={handleSort} titleSort={titleSort} formattedTodoList={formattedTodoList} 
                   setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} editTodo={editTodo}
-                  isAscending={isAscending} addTodo={addTodo} setTodoList={setTodoList}
+                  isAscending={isAscending} addTodo={addTodo} setTodoList={setTodoList} todoCount={todoCount}
                 />
               </> 
             } />
@@ -232,7 +236,7 @@ const App = () => {
                 todoList={todoList} onRemoveTodo={removeTodo} timeSort={timeSort} 
                 handleSort={handleSort} titleSort={titleSort} formattedTodoList={formattedTodoList} 
                 setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} 
-                isAscending={isAscending} editTodo={editTodo} addTodo={addTodo} setTodoList={setTodoList} 
+                isAscending={isAscending} editTodo={editTodo} addTodo={addTodo} setTodoList={setTodoList} todoCount={todoCount} 
               />
             } />
           </Routes> 

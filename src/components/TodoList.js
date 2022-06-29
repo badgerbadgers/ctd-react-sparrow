@@ -9,7 +9,7 @@ import style from '../components/TodoList.module.css'
  it will then return a div with key and a TodoListItem component that
  passes down props
 */
-const TodoList = ({ todoList, setTodoList, onRemoveTodo, formattedTodos, timeSort, titleSort, handleSort, editTodo, addTodo, inputTitle, setInputTitle, setFormattedTodos, getData }) => {
+const TodoList = ({ todoList, setTodoList, onRemoveTodo, formattedTodos, timeSort, titleSort, handleSort, editTodo, addTodo, inputTitle, setInputTitle, setFormattedTodos, todoCount }) => {
   return(
     <>
       <ul>
@@ -36,6 +36,7 @@ const TodoList = ({ todoList, setTodoList, onRemoveTodo, formattedTodos, timeSor
             )
           })}
       </ul>
+      <p className={style.todoCount}># Todos: {todoCount}</p>
     </>
   )
 }

@@ -40,6 +40,6 @@
   margin-right: 10px;
 }
 .listItemCheckbox:checked {
-  background: #fff;
+  /* background: #fff; */
   margin-right: 10px;
 }

@@ -15,7 +15,7 @@ const tableName = `Todo-List`
 
 /* url used for getting data has been appended with view and sort parameters */
 // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
-const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?`
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
 
 /* url used for posting or deleting data */
 const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}/`
@@ -26,7 +26,7 @@ const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTA
 const App = () => {
   const [todoList, setTodoList] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const [isAscending, setIsAscending] = useState(false)
+  const [isAscending, setIsAscending] = useState(true)
   const [formattedTodos, setFormattedTodos] = useState([])
   const [todoCount, setTodoCount] = useState(0)
 
@@ -132,33 +132,37 @@ const App = () => {
   addTodo function adds newTodo to current todoList and sets that new array as current todoList
   adding a new todo will call new API call
   */
-  const addTodo = async (title) => {
-    await fetch(urlPostDelete, {
-      method: 'POST',
-      body: JSON.stringify({
-        "records": 
-        [{
-          "fields": {
-            "Name": title
+  const addTodo = (title) => {
+    if(title === ''){
+      alert('enter a todo')
+    } else {
+      let newTodo = [
+        {
+        id: Date.now(),
+        "fields": {
+          "Name": title
           }
-        }]
-      }),
-        headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-            'Content-Type': 'application/json',
-          }
-    })
-    .then(res => res.json())
-    let newTodo = [
-      {
-      id: Date.now(),
-      "fields": {
-        "Name": title
-        }
-      }, ...todoList]
-      setTodoList(newTodo)
-      setFormattedTodos([])
-      setTodoCount(todoCount + 1)
+        }, ...todoList]
+        setTodoList(newTodo)
+      fetch(urlPostDelete, {
+        method: 'POST',
+        body: JSON.stringify({
+          "records": 
+          [{
+            "fields": {
+              "Name": title
+            }
+          }]
+        }),
+          headers: {
+              Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+              'Content-Type': 'application/json',
+            }
+      })
+      .then(res => res.json())
+        setFormattedTodos([])
+        setTodoCount(todoCount + 1)
+    }
   };
 
   /*

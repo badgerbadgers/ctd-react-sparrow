@@ -7,9 +7,9 @@ import PropTypes from 'prop-types'
 /*
 a component that returns a div with the list name, an icon and a remove button
 */
-const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList, setFormattedTodos, formattedTodos }) => {
+const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList }) => {
   const [onEdit, setOnEdit] = useState(false)
-    /* the initial state of todoTitle and the function that sets its' value */
+  /* the initial state of todoTitle and the function that sets its' value */
   const [inputTitle, setInputTitle] = useState('')
   const [isCompleted, setIsCompleted] = useState(false)
 

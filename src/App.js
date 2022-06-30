@@ -47,6 +47,7 @@ const App = () => {
   useEffect(() => {
     getData()
     setTodoCount(todoList.length)
+    console.log(todoList)
   }, [todoList])
 
   /* a compare function */
@@ -104,7 +105,6 @@ const App = () => {
   const handleSort = (sortMethod) => {
     let updatedTodos = formattedTodoList.sort(sortMethod)
     // setTodoList(updatedTodos)
-    // console.log('updated with set todo func',todoList)
     setFormattedTodos(updatedTodos)
   }
 
@@ -157,8 +157,8 @@ const App = () => {
             }
       })
       .then(res => res.json())
-        setFormattedTodos([])
-        setTodoCount(todoCount + 1)
+      setFormattedTodos([])
+      setTodoCount(todoCount + 1)
   };
 
   /*

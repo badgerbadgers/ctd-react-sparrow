@@ -133,9 +133,6 @@ const App = () => {
   adding a new todo will call new API call
   */
   const addTodo = (title) => {
-    if(title === ''){
-      alert('enter a todo')
-    } else {
       let newTodo = [
         {
         id: Date.now(),
@@ -162,7 +159,6 @@ const App = () => {
       .then(res => res.json())
         setFormattedTodos([])
         setTodoCount(todoCount + 1)
-    }
   };
 
   /*

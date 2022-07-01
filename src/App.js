@@ -47,7 +47,6 @@ const App = () => {
   useEffect(() => {
     getData()
     setTodoCount(todoList.length)
-    console.log(todoList)
   }, [todoList])
 
   /* a compare function */

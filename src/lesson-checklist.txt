@@ -82,10 +82,10 @@ InputWithLabel.js contains the following:
 [x] Functional React component named InputWithLabel with three props: todoTitle, handleTitleChange, and children
 [x] Correct propTypes for the prop(s) listed
 [x] Ref for Input element
-[x] useEffect hook with empty dependency list and callback function that does the following:
-  [x] Focus input ref
+[] useEffect hook with empty dependency list and callback function that does the following:
+  [] Focus input ref (removed imperative react code due to input field that is not focused when editing todo)
 [x] Return statement that renders the following JSX:
-  [x] Label element which renders text from children prop
+  [] Label element which renders text from children prop (removed children as a design decision, form did not look good with title next to input form)
   [x] Input element which is configured as a "controlled component" with "value" and "onChange" attributes
 
 //TodoList Component

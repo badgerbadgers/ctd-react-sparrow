@@ -9,62 +9,35 @@ a component that returns a div with the list name, an icon and a remove button
 */
 const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList }) => {
   const [onEdit, setOnEdit] = useState(false)
-  /* the initial state of todoTitle and the function that sets its' value */
   const [inputTitle, setInputTitle] = useState('')
   const [isCompleted, setIsCompleted] = useState(false)
 
-  // const tableName = `Todo-List`
-
-  // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
-
-  // useEffect(() => {
-  //   async (editedText, id) => {
-  //     await fetch(url+id, {
-  //       method: 'PATCH',
-  //       headers: {
-  //         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         "records": 
-  //         [{
-  //           "id": id,
-  //           "fields": {
-  //             "Done": 'true'
-  //           }
-  //         }]
-  //       })
-  //     })
-  //     // setTodoList(todoList)
-  //     // setFormattedTodos([])
-  //   }
-  // }, [])
-
+  /* removes todo */
   const handleRemoveItem = () => {
     onRemoveTodo(todo.id);
   };
   
+  /* edit a todo */
   const handleEditItem = (e) => {
     getInitialValue()
     setOnEdit(!onEdit)
   }
+
+  /* sets value of currently edited todo's input field */
   const getInitialValue = () => {
     const initialInputText = todoList.filter((item) => item.id === todo.id)
-    // if(initialInputText[0]) {
-    //   setInputTitle(initialInputText[0].fields.Name)
-    // } else {
-    //   setInputTitle(todo.fields.Name)
-    // }
     initialInputText[0] ? setInputTitle(initialInputText[0].fields.Name) : setInputTitle(todo.fields.Name)
   }
 
+  /* gets value of edited todo's input field */
   const handleInputChange = (event) => {
-    // let newInputTitle = event.target.value
     setInputTitle(event.target.value)
   };
 
+  /* when user presses enter button and key 13 on mobile function runs */
   const handleKeyDown = (event) => {
     if(event.key === 'Enter' || event.key === 13) {
+      event.preventDefault();
       let id = todo.id
       let text = event.target.value
       editTodo(text, id)
@@ -72,10 +45,12 @@ const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList }) => {
     }
   }
 
+  /* toggles checkmark boolean */
   const handleCompleteItem = () => {
     setIsCompleted(!isCompleted)
   }
 
+  /* jsx returns div with checkbox, todo name and two buttons */
   return (
   <div key={todo.id} className={style.listContainer}>
     <li className={style.listItem}>
@@ -88,7 +63,6 @@ const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList }) => {
         className={style.editInputField}
         onChange={handleInputChange}
         onKeyPress={handleKeyDown}
-        // onKeyDown={handleKeyDown}
         value={inputTitle}
       />
        : <p className={style.listText}
@@ -126,5 +100,11 @@ TodoListItem.protoTypes = {
   onRemoveTodo: PropTypes.func,
   handleRemoveItem: PropTypes.func,
   editTodo: PropTypes.func,
-  handleKeyDown: PropTypes.func
+  handleKeyDown: PropTypes.func,
+  handleCompleteItem: PropTypes.func,
+  getInitialValue: PropTypes.func,
+  handleEditItem: PropTypes.func,
+  onEdit: PropTypes.bool,
+  inputTitle: PropTypes.string,
+  isCompleted: PropTypes.bool
 }

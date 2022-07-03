@@ -14,7 +14,6 @@ import { ReactComponent as Check } from './img/edit-list.svg'
 const tableName = `Todo-List`
 
 /* url used for getting data has been appended with view and sort parameters */
-// const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
 const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
 
 /* url used for posting or deleting data */
@@ -174,15 +173,13 @@ const App = () => {
       }
     })
     .then(response => response.json())
-    // let newTodoList = todoList.filter((todo) => id !== todo.id)
-    // setTodoList(newTodoList)
-    // getData()
     let newTodos = todoList.filter((todo) => id !== todo.id)
     setTodoList(newTodos)
     setFormattedTodos([])
     setTodoCount(todoCount - 1)
   };
 
+  /* function to edit todo, sends PATCH request to airtable and sets todoList as editedText */
   const editTodo = async (editedText, id) => {
     await fetch(url+id, {
       method: 'PATCH',
@@ -264,5 +261,6 @@ App.protoTypes = {
   formattedTodoList: PropTypes.func,
   addTodo: PropTypes.func,
   removeTodo: PropTypes.func,
-  editTodo: PropTypes.func
+  editTodo: PropTypes.func,
+  todoCount: PropTypes.number
 }

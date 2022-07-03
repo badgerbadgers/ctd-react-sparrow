@@ -41,8 +41,9 @@ const App = () => {
     .then(result => setTodoList(result.records))
     setIsLoading(true)
   }
+
   /*
-  initial useEffect hook that gets API data from airtable and sets data as todoList
+  initial useEffect hook that gets API data from airtable, sets todo counter
   */
   useEffect(() => {
     getData()
@@ -158,7 +159,7 @@ const App = () => {
       .then(res => res.json())
       setFormattedTodos([])
       setTodoCount(todoCount + 1)
-  };
+    }
 
   /*
   remove todo functions takes id and filters out items that are not equal to item id, sends

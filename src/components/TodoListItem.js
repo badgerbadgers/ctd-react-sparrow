@@ -13,6 +13,33 @@ const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList }) => {
   const [inputTitle, setInputTitle] = useState('')
   const [isCompleted, setIsCompleted] = useState(false)
 
+  // const tableName = `Todo-List`
+
+  // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
+
+  // useEffect(() => {
+  //   async (editedText, id) => {
+  //     await fetch(url+id, {
+  //       method: 'PATCH',
+  //       headers: {
+  //         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         "records": 
+  //         [{
+  //           "id": id,
+  //           "fields": {
+  //             "Done": 'true'
+  //           }
+  //         }]
+  //       })
+  //     })
+  //     // setTodoList(todoList)
+  //     // setFormattedTodos([])
+  //   }
+  // }, [])
+
   const handleRemoveItem = () => {
     onRemoveTodo(todo.id);
   };
@@ -37,7 +64,7 @@ const TodoListItem = ({ todo, onRemoveTodo, editTodo, todoList }) => {
   };
 
   const handleKeyDown = (event) => {
-    if(event.key === 'Enter') {
+    if(event.key === 'Enter' || event.key === 13) {
       let id = todo.id
       let text = event.target.value
       editTodo(text, id)

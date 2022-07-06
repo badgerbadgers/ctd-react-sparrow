@@ -5,30 +5,32 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import AddTodoForm from './AddTodoForm'
-import TodoList from './TodoList'
+import PropTypes from 'prop-types'
+import AddTodoForm from './components/AddTodoForm'
+import TodoList from './components/TodoList'
 import { ReactComponent as Check } from './img/edit-list.svg'
-import logo from './img/edit-list.svg'
+
+/* dynamic airtable table name */
+const tableName = `Todo-List`
+
+/* url used for getting data has been appended with view and sort parameters */
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view&sort[0][field]=Name&sort[0][direction]=asc`
+
+/* url used for posting or deleting data */
+const urlPostDelete = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}/`
 
 /*
-  functional component sets state with two variables contains two useEffect hooks, functions and returns JSX
+  functional component contains state for API data, routes for components and jsx
 */
 const App = () => {
   const [todoList, setTodoList] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isAscending, setIsAscending] = useState(true)
+  const [formattedTodos, setFormattedTodos] = useState([])
+  const [todoCount, setTodoCount] = useState(0)
 
-  /*
-  initial useEffect hook call the built in fetch method it has 2 arguments. the first argument is
-  the url with a variable for AIRTABLE_BASE_ID used with backticks (`) and template literal syntax(${}). The second is the
-  option object that provides an object with Authorization property, this property contains the API key
-  also written similar to the AIRTABLE_BASE_ID with template literal and backticks. There is a .then
-  chained after the fetch and takes the result data and turns it into a JSON object. Another .then and calls
-  the setTodoList function to set result. records as the new todoList.
-  
-  The second argument for useEffect is an empty array as second argument
-  */
-  useEffect(() => {
-  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`
+  /* function for getting data */
+  function getData() {
     fetch(url, {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
@@ -36,58 +38,206 @@ const App = () => {
     })
     .then(result => result.json())
     .then(result => setTodoList(result.records))
-  }, [])
+    setIsLoading(true)
+  }
 
   /*
-  addTodo function that takes in a variable newTodo 
-  then creates a new variable newTodos equal to the newTodo added to the
-  todoList state variable the setTodoList then runs and sets the todoList
-  to equal the newTodos variable
-  */
-  const addTodo = (newTodo) => {
-   let newTodos = [newTodo, ...todoList]
-   setTodoList(newTodos)
-  };
-
-  /*
-  a function that takes in an id as paramater and creates a variable that is
-  equal to a filter method applied to todoList state, filter checks if the current
-  id is not equal to the current todo.id if not equal return todo, then the set function
-  setTodoList will return the newTodoList
-  */
-  const removeTodo = (id) => {
-    const newTodoList = todoList.filter(
-      (todo) => id !== todo.id
-    )
-    setTodoList(newTodoList)
-  };
-  
-  /*
-  a 2nd useEffect hook, this will run if isLoading state is false, it will add todos to your local storage
-  saving them with a key and the value as a string, this useEffect will run anytime the todoList variable changes
+  initial useEffect hook that gets API data from airtable, sets todo counter
   */
   useEffect(() => {
-    if(!isLoading) {
-      return localStorage.setItem('savedTodoList', JSON.stringify(todoList))
-    }
-  },[todoList])
+    getData()
+    setTodoCount(todoList.length)
+  }, [todoList])
 
+  /* a compare function */
+  function titleSort(a, b) {
+    /* sort in ascending order */
+    if(!isAscending) {
+      setIsAscending(!isAscending)
+      if(a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1
+      }
+      if(a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1
+      }
+      return 0
+    }
+    /* sort in descending order */
+    if (isAscending) {
+      setIsAscending(!isAscending)
+      if(a.title.toLowerCase() < b.title.toLowerCase()) {
+        return 1
+      }
+      if(a.title.toLowerCase() > b.title.toLowerCase()) {
+        return -1
+      }
+      return 0
+    }
+  }
+  
+  function timeSort(a, b) {
+    /* sort in ascending order */
+    if(!isAscending) {
+      setIsAscending(!isAscending)
+      if(a.time < b.time) {
+        return -1
+      }
+      if(a.time > b.time) {
+        return 1
+      }
+      return 0
+    }
+    /* sort in descending order */
+    if (isAscending) {
+      setIsAscending(!isAscending)
+      if(a.time < b.time) {
+        return 1
+      }
+      if(a.time > b.time) {
+        return -1
+      }
+      return 0
+    }
+  }
+
+  /* runs onclick sorts time */
+  const handleSort = (sortMethod) => {
+    let updatedTodos = formattedTodoList.sort(sortMethod)
+    // setTodoList(updatedTodos)
+    setFormattedTodos(updatedTodos)
+  }
+
+  /* maps array and splits at the 'T', returns a new array and object */
+   const formattedTodoList = 
+      todoList.map((item) => {
+        if(item.createdTime === undefined) {
+          return null
+        } else {
+          const currentDate = item.createdTime.split('T')
+          const date = currentDate[0]
+          const time = currentDate[1]
+          const title = item.fields.Name
+          const id = item.id
+          const todo = {
+            title: title,
+            id: id,
+            date: date,
+            time: time
+          }
+          return todo
+        }
+      })
+  /*
+  addTodo function adds newTodo to current todoList and sets that new array as current todoList
+  adding a new todo will call new API call
+  */
+  const addTodo = (title) => {
+      let newTodo = [
+        {
+        id: Date.now(),
+        "fields": {
+          "Name": title
+          }
+        }, ...todoList]
+        setTodoList(newTodo)
+      fetch(urlPostDelete, {
+        method: 'POST',
+        body: JSON.stringify({
+          "records": 
+          [{
+            "fields": {
+              "Name": title
+            }
+          }]
+        }),
+          headers: {
+              Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+              'Content-Type': 'application/json',
+            }
+      })
+      .then(res => res.json())
+      setFormattedTodos([])
+      setTodoCount(todoCount + 1)
+    }
+
+  /*
+  remove todo functions takes id and filters out items that are not equal to item id, sends
+  delete request using fetch to airtable and deletes that record on airtable
+  */
+  const removeTodo = async (id) => {
+    await fetch(urlPostDelete+id, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    let newTodos = todoList.filter((todo) => id !== todo.id)
+    setTodoList(newTodos)
+    setFormattedTodos([])
+    setTodoCount(todoCount - 1)
+  };
+
+  /* function to edit todo, sends PATCH request to airtable and sets todoList as editedText */
+  const editTodo = async (editedText, id) => {
+    await fetch(url+id, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "records": 
+        [{
+          "id": id,
+          "fields": {
+            "Name": editedText
+          }
+        }]
+      })
+    })
+    setTodoList(todoList)
+    setFormattedTodos([])
+  }
+  
+  /* the return statement uses BrowserRouter to route the AddTodoForm and TodoList with the default '/' url
+    navigating to the url 'form' points the user to the AddTodoForm component and the 'todolist' points the user to the
+    TodoList component
+  */
   return (
     <BrowserRouter>
       <div className={style.container}>
         <div className={style.wrapper}>
-          <h2 className={style.appHeader}> Todo List <Check height="30px" width="30px" /></h2>
-          <AddTodoForm onAddTodo={addTodo} />
+          <h2 className={style.appHeader}> 
+            {tableName}
+          <Check height="30px" width="30px" fill="#40414a" stroke="#40414a" 
+          style={{paddingLeft: '10px'}}
+          /></h2>
+          {!isLoading ? <p>is loading...</p> :
           <Routes>
-          <Route exact path='/' element={<TodoList todoList={todoList} onRemoveTodo={removeTodo}  />} />
-          <Route path='/new' element={<h1>"New Todo List"</h1>} />
-      </Routes>
-
-      {/* will render when isLoading state is changed {isLoading ? (
-        <p>Loading ...</p> 
-        ):(
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )} */}
+            <Route path='/' element={
+              <> 
+                <AddTodoForm onAddTodo={addTodo} />
+                <TodoList 
+                  todoList={todoList} onRemoveTodo={removeTodo} timeSort={timeSort} 
+                  handleSort={handleSort} titleSort={titleSort} formattedTodoList={formattedTodoList} 
+                  setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} editTodo={editTodo}
+                  isAscending={isAscending} addTodo={addTodo} setTodoList={setTodoList} todoCount={todoCount}
+                />
+              </> 
+            } />
+            <Route path='/form' element={ <AddTodoForm onAddTodo={addTodo} /> } />
+            <Route path='/todolist' element={
+              <TodoList 
+                todoList={todoList} onRemoveTodo={removeTodo} timeSort={timeSort} 
+                handleSort={handleSort} titleSort={titleSort} formattedTodoList={formattedTodoList} 
+                setFormattedTodos={setFormattedTodos} formattedTodos={formattedTodos} 
+                isAscending={isAscending} editTodo={editTodo} addTodo={addTodo} setTodoList={setTodoList} todoCount={todoCount} 
+              />
+            } />
+          </Routes> 
+          }
       </div>
     </div>
     </BrowserRouter>
@@ -95,3 +245,22 @@ const App = () => {
 }
  
 export default App
+
+App.protoTypes = {
+  tableName: PropTypes.string,
+  url: PropTypes.string,
+  urlPostDelete: PropTypes.string,
+  getData: PropTypes.func,
+  todoList: PropTypes.array,
+  isLoading: PropTypes.bool,
+  isAscending: PropTypes.bool,
+  formattedTodos: PropTypes.array,
+  titleSort: PropTypes.func,
+  timeSort: PropTypes.func,
+  handleSort: PropTypes.func,
+  formattedTodoList: PropTypes.func,
+  addTodo: PropTypes.func,
+  removeTodo: PropTypes.func,
+  editTodo: PropTypes.func,
+  todoCount: PropTypes.number
+}

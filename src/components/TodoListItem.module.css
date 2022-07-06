@@ -1,0 +1,45 @@
+/* list item button */
+.todoItemBtn {
+  padding: 5px 15px !important;
+  color: #40414a;
+  cursor: pointer;
+}
+/* todo edit button */
+.todoEditBtn {
+  margin: 0;
+  padding: 5px 0px 0px 0px;
+  color: #40414a;
+  cursor: pointer;
+}
+/* edit input field */
+.editInputField {
+  padding: 0px 5px 0px 5px;
+  letter-spacing: .01rem;
+  font-size: .95rem;
+  height: 1.75rem;
+  border-radius: 5px;
+  border-color: #fff;
+}
+/* li element */
+.listItem {
+    color: #001233;
+    list-style: none;
+    font-size: 1.5rem;
+    padding: 0px 5px 0px 10px;
+    height: 40px;
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+}
+.listText {
+  overflow: auto;
+}
+/* li checkbox */
+.listItemCheckbox {
+  margin-right: 10px;
+}
+.listItemCheckbox:checked {
+  /* background: #fff; */
+  margin-right: 10px;
+}
